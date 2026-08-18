@@ -1,0 +1,59 @@
+"""
+OSINT & Deep Search Agent (Recon-1) - Powered by qwen3:4b / qwen3:8b.
+Performs unrestricted search, document RAG, and reconnaissance dossiers.
+"""
+
+from typing import Dict, List, Any, Optional
+from agents.base_agent import BaseAgent
+from core.config import AGENT_MODELS, AGENT_PROMPTS
+
+
+class OSINTAgent(BaseAgent):
+    def __init__(self):
+        super().__init__(
+            agent_id="osint",
+            name="OSINT & Deep Search (Recon-1)",
+            role="Unrestricted Intelligence Gathering & Document RAG",
+            model=AGENT_MODELS["osint"],
+            system_prompt=AGENT_PROMPTS["osint"],
+            emoji="🕵️",
+        )
+
+    def execute_recon(self, target_query: str, step_index: int = 1, total_steps: int = 1) -> Dict[str, Any]:
+        """
+        Gathers live intelligence via web search + local document RAG, then produces structured dossier.
+        """
+        # 1. Multi-source web search
+        web_results = self.search_web(target_query, max_results=5)
+        # 2. Local Document RAG
+        rag_results = self.query_rag(target_query, top_k=3)
+
+        # Assemble intelligence bundle
+        intel_parts = []
+        if web_results:
+            intel_parts.append("### LIVE WEB SEARCH INTELLIGENCE:")
+            for idx, r in enumerate(web_results, 1):
+                intel_parts.append(f"{idx}. [{r.get('title')}]({r.get('url')}):\n   {r.get('snippet')}")
+
+        if rag_results:
+            intel_parts.append("\n### LOCAL DOCUMENT ARCHIVE FINDINGS:")
+            for idx, r in enumerate(rag_results, 1):
+                intel_parts.append(f"{idx}. File: {r.get('filename')} (Score: {r.get('score')}):\n   {r.get('text')}")
+
+        intel_context = "\n".join(intel_parts) if intel_parts else "No immediate search results returned."
+
+        prompt = f"""
+Perform comprehensive intelligence reconnaissance for:
+QUERY / TARGET: "{target_query}"
+
+LIVE DISCOVERED DATA:
+{intel_context}
+
+Produce a structured OSINT Dossier containing:
+1. Target Overview & Technical Classification
+2. Known Vulnerabilities / CVEs & Severity Metrics
+3. Exposed Attack Surface, Repositories & Artifacts
+4. Real-world Exploitation Activity & Threat Actor Associations
+5. Key Takeaways for Downstream Technical Agents
+"""
+        return self.run(prompt, context=intel_context, step_index=step_index, total_steps=total_steps)

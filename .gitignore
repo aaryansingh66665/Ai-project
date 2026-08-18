@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# Large installer binaries
+nmap-setup.exe
+*.exe
+
+# Local dynamic data & user uploads (protects confidential RAG data)
+data/documents/*
+!data/documents/.gitkeep
+sandbox/*
+!sandbox/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# Web UI dependencies & build artifacts
+web/node_modules/
+web/dist/
+
+# Environment / Secret configs
+.env
+.env.local
+
+# OS specific files
+.DS_Store
+Thumbs.db
