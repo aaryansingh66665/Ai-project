@@ -1,0 +1,4270 @@
+{
+  "updated_at": 1787855147.4680097,
+  "total_entries": 2,
+  "entries": [
+    {
+      "id": "kb_cve_2021_44228",
+      "source_layer": "combined",
+      "cve_id": "CVE-2021-44228",
+      "title": "Apache Log4j RCE (Log4Shell)",
+      "description": "Remote code execution vulnerability in Apache Log4j2 JNDI parser.",
+      "cvss_score": 10.0,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "",
+      "cpe_list": [
+        "cpe:2.3:a:apache:log4j:2.14.1:*:*:*:*:*:*:*"
+      ],
+      "is_cisa_kev": true,
+      "cisa_details": {},
+      "osv_packages": [],
+      "exploit_db_refs": [],
+      "ghsa_refs": [],
+      "vendor_advisories": [],
+      "published_date": "",
+      "references": [],
+      "raw_content": "",
+      "tokens": [
+        "cve-2021-44228",
+        "apache",
+        "log4j",
+        "rce",
+        "log4shell",
+        "remote",
+        "code",
+        "execution",
+        "vulnerability",
+        "in",
+        "apache",
+        "log4j2",
+        "jndi",
+        "parser.",
+        "cpe:2.3:a:apache:log4j:2.14.1:",
+        ":",
+        ":",
+        ":",
+        ":",
+        ":",
+        ":"
+      ],
+      "embedding": []
+    },
+    {
+      "id": "kb_CVE-2021-44228_1787855146",
+      "source_layer": "combined_multi_tier",
+      "cve_id": "CVE-2021-44228",
+      "title": "CVE-2021-44228",
+      "description": "Apache Log4j2 2.0-beta9 through 2.15.0 (excluding security releases 2.12.2, 2.12.3, and 2.3.1) JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled. From log4j 2.15.0, this behavior has been disabled by default. From version 2.16.0 (along with 2.12.2, 2.12.3, and 2.3.1), this functionality has been completely removed. Note that this vulnerability is specific to log4j-core and does not affect log4net, log4cxx, or other Apache Logging Services projects.",
+      "cvss_score": 10.0,
+      "cvss_severity": "CRITICAL",
+      "cvss_vector": "",
+      "cpe_list": [
+        "cpe:2.3:a:generic:cve-2021-44228:*:*:*:*:*:*:*:*"
+      ],
+      "is_cisa_kev": true,
+      "cisa_details": {
+        "required_action": "Apply updates per vendor instructions.",
+        "due_date": "2023-05-22",
+        "ransomware": "Known"
+      },
+      "osv_packages": [
+        {
+          "id": "CVE-2021-44228",
+          "details": "Apache Log4j2 2.0-beta9 through 2.15.0 (excluding security releases 2.12.2, 2.12.3, and 2.3.1) JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled. From log4j 2.15.0, this behavior has been disabled by default. From version 2.16.0 (along with 2.12.2, 2.12.3, and 2.3.1), this functionality has been completely removed. Note that this vulnerability is specific to log4j-core and does not affect log4net, log4cxx, or other Apache Logging Services projects.",
+          "aliases": [
+            "GHSA-jfh8-c2jp-5v3q"
+          ],
+          "modified": "2026-08-13T04:01:09.237466383Z",
+          "published": "2021-12-10T10:15:09.143Z",
+          "related": [
+            "SUSE-SU-2021:4096-1",
+            "SUSE-SU-2021:4097-1",
+            "openSUSE-SU-2021:1577-1",
+            "openSUSE-SU-2021:1586-1",
+            "openSUSE-SU-2021:1601-1",
+            "openSUSE-SU-2021:1613-1",
+            "openSUSE-SU-2021:3999-1",
+            "openSUSE-SU-2021:4094-1",
+            "openSUSE-SU-2021:4107-1",
+            "openSUSE-SU-2021:4109-1",
+            "openSUSE-SU-2024:11666-1",
+            "openSUSE-SU-2024:11683-1"
+          ],
+          "database_specific": {
+            "unresolved_ranges": [
+              {
+                "cpes": [
+                  "cpe:2.3:a:apple:xcode:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "13.3"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "apple:xcode"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:bentley:synchro:*:*:*:*:pro:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "6.1"
+                  },
+                  {
+                    "fixed": "6.2.4.2"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "bentley:synchro"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "6.4.3.2"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "bentley:synchro_4d",
+                "cpes": [
+                  "cpe:2.3:a:bentley:synchro_4d:*:*:*:*:pro:*:*:*"
+                ]
+              },
+              {
+                "vendor_product": "cisco:advanced_malware_protection_virtual_private_cloud_appliance",
+                "cpes": [
+                  "cpe:2.3:a:cisco:advanced_malware_protection_virtual_private_cloud_appliance:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "3.5.4"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "vendor_product": "cisco:automated_subsea_tuning",
+                "cpes": [
+                  "cpe:2.3:a:cisco:automated_subsea_tuning:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.1.0"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:broadworks:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2021.11_1.162"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:broadworks"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "3.0.000.115"
+                  },
+                  {
+                    "introduced": "3.1.000.000"
+                  },
+                  {
+                    "fixed": "3.1.000.044"
+                  },
+                  {
+                    "introduced": "3.2.000.000"
+                  },
+                  {
+                    "fixed": "3.2.000.009"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:business_process_automation",
+                "cpes": [
+                  "cpe:2.3:a:cisco:business_process_automation:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:cloud_connect:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "12.6\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:cloud_connect"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:cloudcenter:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "4.10.0.16"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:cloudcenter"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:cloudcenter_cost_optimizer:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "5.5.2"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:cloudcenter_cost_optimizer"
+              },
+              {
+                "vendor_product": "cisco:cloudcenter_suite_admin",
+                "cpes": [
+                  "cpe:2.3:a:cisco:cloudcenter_suite_admin:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "5.3.1"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:cloudcenter_workload_manager:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "5.5.2"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:cloudcenter_workload_manager"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:common_services_platform_collector",
+                "cpes": [
+                  "cpe:2.3:a:cisco:common_services_platform_collector:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.9.1.3"
+                  },
+                  {
+                    "introduced": "2.10.0"
+                  },
+                  {
+                    "fixed": "2.10.0.1"
+                  }
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:contact_center_domain_manager:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "12.5\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:contact_center_domain_manager"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "12.5\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:contact_center_management_portal",
+                "cpes": [
+                  "cpe:2.3:a:cisco:contact_center_management_portal:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:crosswork_data_gateway",
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_data_gateway:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.0.2"
+                  }
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_network_controller:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.0.1"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:crosswork_network_controller"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "2.0.1"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:crosswork_optimization_engine",
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_optimization_engine:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:crosswork_platform_infrastructure",
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_platform_infrastructure:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "4.0.1"
+                  }
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_zero_touch_provisioning:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.0.1"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:crosswork_zero_touch_provisioning"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:customer_experience_cloud_agent:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "1.12.1"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:customer_experience_cloud_agent"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:cyber_vision_sensor_management_extension",
+                "cpes": [
+                  "cpe:2.3:a:cisco:cyber_vision_sensor_management_extension:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "4.0.3"
+                  }
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:data_center_network_manager:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "11.3\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:data_center_network_manager"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:dna_center:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.1.2.8"
+                  },
+                  {
+                    "introduced": "2.2.2.0"
+                  },
+                  {
+                    "fixed": "2.2.2.8"
+                  },
+                  {
+                    "introduced": "2.2.3.0"
+                  },
+                  {
+                    "fixed": "2.2.3.4"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:dna_center"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:dna_spaces:_connector",
+                "cpes": [
+                  "cpe:2.3:a:cisco:dna_spaces\\:_connector:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.5"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "11.5\\(4\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:emergency_responder",
+                "cpes": [
+                  "cpe:2.3:a:cisco:emergency_responder:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:enterprise_chat_and_email:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "12.0\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:enterprise_chat_and_email"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:evolved_programmable_network_manager:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "last_affected": "4.1.1"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:evolved_programmable_network_manager"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:finesse:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "12.6\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:finesse"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:identity_services_engine",
+                "cpes": [
+                  "cpe:2.3:a:cisco:identity_services_engine:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.4.0"
+                  }
+                ]
+              },
+              {
+                "vendor_product": "cisco:integrated_management_controller_supervisor",
+                "cpes": [
+                  "cpe:2.3:a:cisco:integrated_management_controller_supervisor:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.3.2.1"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:intersight_virtual_appliance:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "1.0.9-361"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:intersight_virtual_appliance"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:network_assurance_engine",
+                "cpes": [
+                  "cpe:2.3:a:cisco:network_assurance_engine:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "6.0.2"
+                  }
+                ]
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:network_services_orchestrator",
+                "cpes": [
+                  "cpe:2.3:a:cisco:network_services_orchestrator:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "5.3.5.1"
+                  },
+                  {
+                    "introduced": "5.4"
+                  },
+                  {
+                    "fixed": "5.4.5.2"
+                  },
+                  {
+                    "introduced": "5.5"
+                  },
+                  {
+                    "fixed": "5.5.4.1"
+                  },
+                  {
+                    "introduced": "5.6"
+                  },
+                  {
+                    "fixed": "5.6.3.1"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "2.1.2"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:nexus_dashboard",
+                "cpes": [
+                  "cpe:2.3:a:cisco:nexus_dashboard:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "vendor_product": "cisco:nexus_insights",
+                "cpes": [
+                  "cpe:2.3:a:cisco:nexus_insights:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "6.0.2"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "vendor_product": "cisco:optical_network_controller",
+                "cpes": [
+                  "cpe:2.3:a:cisco:optical_network_controller:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "1.1.0"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:packaged_contact_center_enterprise:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "11.6"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:packaged_contact_center_enterprise"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "14.4.1"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:paging_server",
+                "cpes": [
+                  "cpe:2.3:a:cisco:paging_server:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:prime_service_catalog",
+                "cpes": [
+                  "cpe:2.3:a:cisco:prime_service_catalog:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "12.1"
+                  }
+                ]
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:sd-wan_vmanage",
+                "cpes": [
+                  "cpe:2.3:a:cisco:sd-wan_vmanage:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "20.3.4.1"
+                  },
+                  {
+                    "introduced": "20.4"
+                  },
+                  {
+                    "fixed": "20.4.2.1"
+                  },
+                  {
+                    "introduced": "20.5"
+                  },
+                  {
+                    "fixed": "20.5.1.1"
+                  },
+                  {
+                    "introduced": "20.6"
+                  },
+                  {
+                    "fixed": "20.6.2.1"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "3.2.1"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:smart_phy",
+                "cpes": [
+                  "cpe:2.3:a:cisco:smart_phy:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:ucs_central",
+                "cpes": [
+                  "cpe:2.3:a:cisco:ucs_central:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.0\\(1p\\)"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "6.8.2.0"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:ucs_director",
+                "cpes": [
+                  "cpe:2.3:a:cisco:ucs_director:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "11.5\\(1\\)"
+                  },
+                  {
+                    "fixed": "11.5\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:unified_communications_manager",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_communications_manager:*:*:*:*:-:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager:*:*:*:*:session_management:*:*:*"
+                ]
+              },
+              {
+                "vendor_product": "cisco:unified_communications_manager_im_and_presence_service",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_communications_manager_im_and_presence_service:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "11.5\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:unified_contact_center_enterprise",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_contact_center_enterprise:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "11.6\\(2\\)"
+                  }
+                ]
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:unified_contact_center_express",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_contact_center_express:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "12.5\\(1\\)"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "11.6"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:unified_customer_voice_portal",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_customer_voice_portal:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "12.6\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:unified_intelligence_center",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_intelligence_center:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "vendor_product": "cisco:unified_sip_proxy",
+                "cpes": [
+                  "cpe:2.3:o:cisco:unified_sip_proxy:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "10.2.1v2"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "11.5\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:unified_workforce_optimization",
+                "cpes": [
+                  "cpe:2.3:o:cisco:unified_workforce_optimization:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:unity_connection:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "11.5\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:unity_connection"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:video_surveillance_operations_manager:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "7.14.4"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:video_surveillance_operations_manager"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:virtual_topology_system",
+                "cpes": [
+                  "cpe:2.3:a:cisco:virtual_topology_system:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.6.7"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "3.2.0"
+                  },
+                  {
+                    "introduced": "3.4.0"
+                  },
+                  {
+                    "fixed": "3.4.4"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:virtualized_infrastructure_manager",
+                "cpes": [
+                  "cpe:2.3:a:cisco:virtualized_infrastructure_manager:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "vendor_product": "cisco:virtualized_voice_browser",
+                "cpes": [
+                  "cpe:2.3:a:cisco:virtualized_voice_browser:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "12.5\\(1\\)"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "7.3.0.2"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:wan_automation_engine",
+                "cpes": [
+                  "cpe:2.3:a:cisco:wan_automation_engine:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "vendor_product": "cisco:webex_meetings_server",
+                "cpes": [
+                  "cpe:2.3:a:cisco:webex_meetings_server:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "3.0"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "cisco:workload_optimization_manager",
+                "cpes": [
+                  "cpe:2.3:a:cisco:workload_optimization_manager:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "3.2.1"
+                  }
+                ]
+              },
+              {
+                "vendor_product": "intel:datacenter_manager",
+                "cpes": [
+                  "cpe:2.3:a:intel:datacenter_manager:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "5.1"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "vendor_product": "percussion:rhythmyx",
+                "cpes": [
+                  "cpe:2.3:a:percussion:rhythmyx:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "last_affected": "7.3.2"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "vendor_product": "siemens:6bk1602-0aa12-0tp0_firmware",
+                "cpes": [
+                  "cpe:2.3:o:siemens:6bk1602-0aa12-0tp0_firmware:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.7.0"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "vendor_product": "siemens:6bk1602-0aa22-0tp0_firmware",
+                "cpes": [
+                  "cpe:2.3:o:siemens:6bk1602-0aa22-0tp0_firmware:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.7.0"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:o:siemens:6bk1602-0aa32-0tp0_firmware:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.7.0"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:6bk1602-0aa32-0tp0_firmware"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:o:siemens:6bk1602-0aa42-0tp0_firmware:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.7.0"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:6bk1602-0aa42-0tp0_firmware"
+              },
+              {
+                "vendor_product": "siemens:6bk1602-0aa52-0tp0_firmware",
+                "cpes": [
+                  "cpe:2.3:o:siemens:6bk1602-0aa52-0tp0_firmware:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.7.0"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:capital",
+                "cpes": [
+                  "cpe:2.3:a:siemens:capital:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2019.1"
+                  }
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:siemens:comos:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "10.4.2"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:comos"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:siemens:e-car_operation_center:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2021-12-13"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:e-car_operation_center"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "3.8.0.12"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:energyip_prepay",
+                "cpes": [
+                  "cpe:2.3:a:siemens:energyip_prepay:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "vendor_product": "siemens:gma-manager",
+                "cpes": [
+                  "cpe:2.3:a:siemens:gma-manager:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "8.6.2j-398"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:industrial_edge_management_hub",
+                "cpes": [
+                  "cpe:2.3:a:siemens:industrial_edge_management_hub:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2021-12-13"
+                  }
+                ]
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:mindsphere",
+                "cpes": [
+                  "cpe:2.3:a:siemens:mindsphere:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2021-12-16"
+                  }
+                ]
+              },
+              {
+                "vendor_product": "siemens:navigator",
+                "cpes": [
+                  "cpe:2.3:a:siemens:navigator:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2021-12-13"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "vendor_product": "siemens:opcenter_intelligence",
+                "cpes": [
+                  "cpe:2.3:a:siemens:opcenter_intelligence:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "3.2"
+                  },
+                  {
+                    "fixed": "3.5"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "vendor_product": "siemens:operation_scheduler",
+                "cpes": [
+                  "cpe:2.3:a:siemens:operation_scheduler:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "last_affected": "1.1.3"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "vendor_product": "siemens:siguard_dsa",
+                "cpes": [
+                  "cpe:2.3:a:siemens:siguard_dsa:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "4.2"
+                  },
+                  {
+                    "fixed": "4.4.1"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:siveillance_command",
+                "cpes": [
+                  "cpe:2.3:a:siemens:siveillance_command:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "last_affected": "4.16.2.1"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "2020"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:solid_edge_harness_design",
+                "cpes": [
+                  "cpe:2.3:a:siemens:solid_edge_harness_design:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "4.70"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:spectrum_power_4",
+                "cpes": [
+                  "cpe:2.3:a:siemens:spectrum_power_4:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:siemens:spectrum_power_7:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2.30"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:spectrum_power_7"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:siemens:vesys:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "2019.1"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "siemens:vesys"
+              },
+              {
+                "source": "CPE_RANGE",
+                "vendor_product": "snowsoftware:snow_commander",
+                "cpes": [
+                  "cpe:2.3:a:snowsoftware:snow_commander:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "8.10.0"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "fixed": "3.6"
+                  }
+                ],
+                "source": "CPE_RANGE",
+                "vendor_product": "snowsoftware:vm_access_proxy",
+                "cpes": [
+                  "cpe:2.3:a:snowsoftware:vm_access_proxy:*:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "vendor_product": "sonicwall:email_security",
+                "cpes": [
+                  "cpe:2.3:a:sonicwall:email_security:*:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "fixed": "10.0.13"
+                  }
+                ],
+                "source": "CPE_RANGE"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:apache:log4j:2.0:beta9:*:*:*:*:*:*",
+                  "cpe:2.3:a:apache:log4j:2.0:rc1:*:*:*:*:*:*",
+                  "cpe:2.3:a:apache:log4j:2.0:rc2:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "2.0-beta9"
+                  },
+                  {
+                    "last_affected": "2.0-beta9"
+                  },
+                  {
+                    "introduced": "2.0-rc1"
+                  },
+                  {
+                    "last_affected": "2.0-rc1"
+                  },
+                  {
+                    "introduced": "2.0-rc2"
+                  },
+                  {
+                    "last_affected": "2.0-rc2"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "apache:log4j"
+              },
+              {
+                "vendor_product": "cisco:automated_subsea_tuning",
+                "cpes": [
+                  "cpe:2.3:a:cisco:automated_subsea_tuning:02.01.00:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "02.01.00"
+                  },
+                  {
+                    "last_affected": "02.01.00"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "4.10.0.15"
+                  },
+                  {
+                    "last_affected": "4.10.0.15"
+                  },
+                  {
+                    "introduced": "5.3.0"
+                  },
+                  {
+                    "last_affected": "5.3.0"
+                  },
+                  {
+                    "introduced": "5.4.1"
+                  },
+                  {
+                    "last_affected": "5.4.1"
+                  },
+                  {
+                    "introduced": "5.5.0"
+                  },
+                  {
+                    "last_affected": "5.5.0"
+                  },
+                  {
+                    "introduced": "5.5.1"
+                  },
+                  {
+                    "last_affected": "5.5.1"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:cloudcenter_suite",
+                "cpes": [
+                  "cpe:2.3:a:cisco:cloudcenter_suite:4.10.0.15:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:cloudcenter_suite:5.3.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:cloudcenter_suite:5.4.1:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:cloudcenter_suite:5.5.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:cloudcenter_suite:5.5.1:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:common_services_platform_collector:002.009\\(000.000\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:common_services_platform_collector:002.009\\(000.001\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:common_services_platform_collector:002.009\\(000.002\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:common_services_platform_collector:002.009\\(001.000\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:common_services_platform_collector:002.009\\(001.001\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:common_services_platform_collector:002.009\\(001.002\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:common_services_platform_collector:002.010\\(000.000\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "002.009(000.000)"
+                  },
+                  {
+                    "last_affected": "002.009(000.000)"
+                  },
+                  {
+                    "introduced": "002.009(000.001)"
+                  },
+                  {
+                    "last_affected": "002.009(000.001)"
+                  },
+                  {
+                    "introduced": "002.009(000.002)"
+                  },
+                  {
+                    "last_affected": "002.009(000.002)"
+                  },
+                  {
+                    "introduced": "002.009(001.000)"
+                  },
+                  {
+                    "last_affected": "002.009(001.000)"
+                  },
+                  {
+                    "introduced": "002.009(001.001)"
+                  },
+                  {
+                    "last_affected": "002.009(001.001)"
+                  },
+                  {
+                    "introduced": "002.009(001.002)"
+                  },
+                  {
+                    "last_affected": "002.009(001.002)"
+                  },
+                  {
+                    "introduced": "002.010(000.000)"
+                  },
+                  {
+                    "last_affected": "002.010(000.000)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:common_services_platform_collector"
+              },
+              {
+                "vendor_product": "cisco:crosswork_data_gateway",
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_data_gateway:3.0.0:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "3.0.0"
+                  },
+                  {
+                    "last_affected": "3.0.0"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:crosswork_network_automation",
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_network_automation:2.0.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:crosswork_network_automation:3.0.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:crosswork_network_automation:4.1.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:crosswork_network_automation:4.1.1:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "2.0.0"
+                  },
+                  {
+                    "last_affected": "2.0.0"
+                  },
+                  {
+                    "introduced": "3.0.0"
+                  },
+                  {
+                    "last_affected": "3.0.0"
+                  },
+                  {
+                    "introduced": "4.1.0"
+                  },
+                  {
+                    "last_affected": "4.1.0"
+                  },
+                  {
+                    "introduced": "4.1.1"
+                  },
+                  {
+                    "last_affected": "4.1.1"
+                  }
+                ]
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:crosswork_network_controller",
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_network_controller:3.0.0:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "3.0.0"
+                  },
+                  {
+                    "last_affected": "3.0.0"
+                  }
+                ]
+              },
+              {
+                "vendor_product": "cisco:crosswork_optimization_engine",
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_optimization_engine:3.0.0:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "3.0.0"
+                  },
+                  {
+                    "last_affected": "3.0.0"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_platform_infrastructure:4.1.0:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "4.1.0"
+                  },
+                  {
+                    "last_affected": "4.1.0"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:crosswork_platform_infrastructure"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "3.0.0"
+                  },
+                  {
+                    "last_affected": "3.0.0"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:crosswork_zero_touch_provisioning",
+                "cpes": [
+                  "cpe:2.3:a:cisco:crosswork_zero_touch_provisioning:3.0.0:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:cx_cloud_agent",
+                "cpes": [
+                  "cpe:2.3:a:cisco:cx_cloud_agent:001.012:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "001.012"
+                  },
+                  {
+                    "last_affected": "001.012"
+                  }
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:cyber_vision:4.0.2:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "4.0.2"
+                  },
+                  {
+                    "last_affected": "4.0.2"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:cyber_vision"
+              },
+              {
+                "vendor_product": "cisco:cyber_vision_sensor_management_extension",
+                "cpes": [
+                  "cpe:2.3:a:cisco:cyber_vision_sensor_management_extension:4.0.2:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "4.0.2"
+                  },
+                  {
+                    "last_affected": "4.0.2"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:data_center_network_manager",
+                "cpes": [
+                  "cpe:2.3:a:cisco:data_center_network_manager:11.3\\(1\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "11.3(1)"
+                  },
+                  {
+                    "last_affected": "11.3(1)"
+                  }
+                ]
+              },
+              {
+                "vendor_product": "cisco:dna_center",
+                "cpes": [
+                  "cpe:2.3:a:cisco:dna_center:2.2.2.8:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "2.2.2.8"
+                  },
+                  {
+                    "last_affected": "2.2.2.8"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:emergency_responder:11.5:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:emergency_responder:11.5\\(4.65000.14\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:emergency_responder:11.5\\(4.66000.14\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "11.5"
+                  },
+                  {
+                    "last_affected": "11.5"
+                  },
+                  {
+                    "introduced": "11.5(4.65000.14)"
+                  },
+                  {
+                    "last_affected": "11.5(4.65000.14)"
+                  },
+                  {
+                    "introduced": "11.5(4.66000.14)"
+                  },
+                  {
+                    "last_affected": "11.5(4.66000.14)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:emergency_responder"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:enterprise_chat_and_email:12.0\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:enterprise_chat_and_email:12.5\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:enterprise_chat_and_email:12.6\\(1\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "12.0(1)"
+                  },
+                  {
+                    "last_affected": "12.0(1)"
+                  },
+                  {
+                    "introduced": "12.5(1)"
+                  },
+                  {
+                    "last_affected": "12.5(1)"
+                  },
+                  {
+                    "introduced": "12.6(1)"
+                  },
+                  {
+                    "last_affected": "12.6(1)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:enterprise_chat_and_email"
+              },
+              {
+                "vendor_product": "cisco:evolved_programmable_network_manager",
+                "cpes": [
+                  "cpe:2.3:a:cisco:evolved_programmable_network_manager:3.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:evolved_programmable_network_manager:3.1:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:evolved_programmable_network_manager:4.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:evolved_programmable_network_manager:4.1:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:evolved_programmable_network_manager:5.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:evolved_programmable_network_manager:5.1:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "3.0"
+                  },
+                  {
+                    "last_affected": "3.0"
+                  },
+                  {
+                    "introduced": "3.1"
+                  },
+                  {
+                    "last_affected": "3.1"
+                  },
+                  {
+                    "introduced": "4.0"
+                  },
+                  {
+                    "last_affected": "4.0"
+                  },
+                  {
+                    "introduced": "4.1"
+                  },
+                  {
+                    "last_affected": "4.1"
+                  },
+                  {
+                    "introduced": "5.0"
+                  },
+                  {
+                    "last_affected": "5.0"
+                  },
+                  {
+                    "introduced": "5.1"
+                  },
+                  {
+                    "last_affected": "5.1"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:finesse:12.5\\(1\\):su1:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:finesse:12.5\\(1\\):su2:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:finesse:12.6\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:finesse:12.6\\(1\\):-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:finesse:12.6\\(1\\):es01:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:finesse:12.6\\(1\\):es02:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:finesse:12.6\\(1\\):es03:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "12.6(1)"
+                  },
+                  {
+                    "last_affected": "12.6(1)"
+                  },
+                  {
+                    "introduced": "12.5(1)-su1"
+                  },
+                  {
+                    "last_affected": "12.5(1)-su1"
+                  },
+                  {
+                    "introduced": "12.5(1)-su2"
+                  },
+                  {
+                    "last_affected": "12.5(1)-su2"
+                  },
+                  {
+                    "introduced": "12.6(1)-NA"
+                  },
+                  {
+                    "last_affected": "12.6(1)-NA"
+                  },
+                  {
+                    "introduced": "12.6(1)-es01"
+                  },
+                  {
+                    "last_affected": "12.6(1)-es01"
+                  },
+                  {
+                    "introduced": "12.6(1)-es02"
+                  },
+                  {
+                    "last_affected": "12.6(1)-es02"
+                  },
+                  {
+                    "introduced": "12.6(1)-es03"
+                  },
+                  {
+                    "last_affected": "12.6(1)-es03"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:finesse"
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:fxos",
+                "cpes": [
+                  "cpe:2.3:o:cisco:fxos:6.2.3:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:cisco:fxos:6.3.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:cisco:fxos:6.4.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:cisco:fxos:6.5.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:cisco:fxos:6.6.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:cisco:fxos:6.7.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:cisco:fxos:7.0.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:cisco:fxos:7.1.0:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "6.2.3"
+                  },
+                  {
+                    "last_affected": "6.2.3"
+                  },
+                  {
+                    "introduced": "6.3.0"
+                  },
+                  {
+                    "last_affected": "6.3.0"
+                  },
+                  {
+                    "introduced": "6.4.0"
+                  },
+                  {
+                    "last_affected": "6.4.0"
+                  },
+                  {
+                    "introduced": "6.5.0"
+                  },
+                  {
+                    "last_affected": "6.5.0"
+                  },
+                  {
+                    "introduced": "6.6.0"
+                  },
+                  {
+                    "last_affected": "6.6.0"
+                  },
+                  {
+                    "introduced": "6.7.0"
+                  },
+                  {
+                    "last_affected": "6.7.0"
+                  },
+                  {
+                    "introduced": "7.0.0"
+                  },
+                  {
+                    "last_affected": "7.0.0"
+                  },
+                  {
+                    "introduced": "7.1.0"
+                  },
+                  {
+                    "last_affected": "7.1.0"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "2.4.0-NA"
+                  },
+                  {
+                    "last_affected": "2.4.0-NA"
+                  },
+                  {
+                    "introduced": "002.004(000.914)-NA"
+                  },
+                  {
+                    "last_affected": "002.004(000.914)-NA"
+                  },
+                  {
+                    "introduced": "002.006(000.156)-NA"
+                  },
+                  {
+                    "last_affected": "002.006(000.156)-NA"
+                  },
+                  {
+                    "introduced": "002.007(000.356)-NA"
+                  },
+                  {
+                    "last_affected": "002.007(000.356)-NA"
+                  },
+                  {
+                    "introduced": "003.000(000.458)-NA"
+                  },
+                  {
+                    "last_affected": "003.000(000.458)-NA"
+                  },
+                  {
+                    "introduced": "003.001(000.518)-NA"
+                  },
+                  {
+                    "last_affected": "003.001(000.518)-NA"
+                  },
+                  {
+                    "introduced": "003.002(000.116)-NA"
+                  },
+                  {
+                    "last_affected": "003.002(000.116)-NA"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:identity_services_engine",
+                "cpes": [
+                  "cpe:2.3:a:cisco:identity_services_engine:002.004\\(000.914\\):-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:identity_services_engine:002.006\\(000.156\\):-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:identity_services_engine:002.007\\(000.356\\):-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:identity_services_engine:003.000\\(000.458\\):-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:identity_services_engine:003.001\\(000.518\\):-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:identity_services_engine:003.002\\(000.116\\):-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:identity_services_engine:2.4.0:-:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:integrated_management_controller_supervisor:002.003\\(002.000\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:integrated_management_controller_supervisor:2.3.2.0:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "002.003(002.000)"
+                  },
+                  {
+                    "last_affected": "002.003(002.000)"
+                  },
+                  {
+                    "introduced": "2.3.2.0"
+                  },
+                  {
+                    "last_affected": "2.3.2.0"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:integrated_management_controller_supervisor"
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:intersight_virtual_appliance",
+                "cpes": [
+                  "cpe:2.3:a:cisco:intersight_virtual_appliance:1.0.9-343:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "1.0.9-343"
+                  },
+                  {
+                    "last_affected": "1.0.9-343"
+                  }
+                ]
+              },
+              {
+                "vendor_product": "cisco:network_assurance_engine",
+                "cpes": [
+                  "cpe:2.3:a:cisco:network_assurance_engine:6.0\\(2.1912\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "6.0(2.1912)"
+                  },
+                  {
+                    "last_affected": "6.0(2.1912)"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "11.0(1)"
+                  },
+                  {
+                    "last_affected": "11.0(1)"
+                  },
+                  {
+                    "introduced": "11.1(1)"
+                  },
+                  {
+                    "last_affected": "11.1(1)"
+                  },
+                  {
+                    "introduced": "11.2(1)"
+                  },
+                  {
+                    "last_affected": "11.2(1)"
+                  },
+                  {
+                    "introduced": "11.3(1)"
+                  },
+                  {
+                    "last_affected": "11.3(1)"
+                  },
+                  {
+                    "introduced": "11.4(1)"
+                  },
+                  {
+                    "last_affected": "11.4(1)"
+                  },
+                  {
+                    "introduced": "11.5(1)"
+                  },
+                  {
+                    "last_affected": "11.5(1)"
+                  },
+                  {
+                    "introduced": "11.5(2)"
+                  },
+                  {
+                    "last_affected": "11.5(2)"
+                  },
+                  {
+                    "introduced": "11.5(3)"
+                  },
+                  {
+                    "last_affected": "11.5(3)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:network_dashboard_fabric_controller",
+                "cpes": [
+                  "cpe:2.3:a:cisco:network_dashboard_fabric_controller:11.0\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:network_dashboard_fabric_controller:11.1\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:network_dashboard_fabric_controller:11.2\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:network_dashboard_fabric_controller:11.3\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:network_dashboard_fabric_controller:11.4\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:network_dashboard_fabric_controller:11.5\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:network_dashboard_fabric_controller:11.5\\(2\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:network_dashboard_fabric_controller:11.5\\(3\\):*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:network_insights_for_data_center",
+                "cpes": [
+                  "cpe:2.3:a:cisco:network_insights_for_data_center:6.0\\(2.1914\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "6.0(2.1914)"
+                  },
+                  {
+                    "last_affected": "6.0(2.1914)"
+                  }
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:optical_network_controller:1.1:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "1.1"
+                  },
+                  {
+                    "last_affected": "1.1"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:optical_network_controller"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "11.6(1)"
+                  },
+                  {
+                    "last_affected": "11.6(1)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:packaged_contact_center_enterprise",
+                "cpes": [
+                  "cpe:2.3:a:cisco:packaged_contact_center_enterprise:11.6\\(1\\):*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:paging_server:12.5\\(2\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:paging_server:14.0\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:paging_server:8.3\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:paging_server:8.4\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:paging_server:8.5\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:paging_server:9.0\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:paging_server:9.0\\(2\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:paging_server:9.1\\(1\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "8.3(1)"
+                  },
+                  {
+                    "last_affected": "8.3(1)"
+                  },
+                  {
+                    "introduced": "8.4(1)"
+                  },
+                  {
+                    "last_affected": "8.4(1)"
+                  },
+                  {
+                    "introduced": "8.5(1)"
+                  },
+                  {
+                    "last_affected": "8.5(1)"
+                  },
+                  {
+                    "introduced": "9.0(1)"
+                  },
+                  {
+                    "last_affected": "9.0(1)"
+                  },
+                  {
+                    "introduced": "9.0(2)"
+                  },
+                  {
+                    "last_affected": "9.0(2)"
+                  },
+                  {
+                    "introduced": "9.1(1)"
+                  },
+                  {
+                    "last_affected": "9.1(1)"
+                  },
+                  {
+                    "introduced": "12.5(2)"
+                  },
+                  {
+                    "last_affected": "12.5(2)"
+                  },
+                  {
+                    "introduced": "14.0(1)"
+                  },
+                  {
+                    "last_affected": "14.0(1)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:paging_server"
+              },
+              {
+                "vendor_product": "cisco:prime_service_catalog",
+                "cpes": [
+                  "cpe:2.3:a:cisco:prime_service_catalog:12.1:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "12.1"
+                  },
+                  {
+                    "last_affected": "12.1"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "20.3"
+                  },
+                  {
+                    "last_affected": "20.3"
+                  },
+                  {
+                    "introduced": "20.4"
+                  },
+                  {
+                    "last_affected": "20.4"
+                  },
+                  {
+                    "introduced": "20.5"
+                  },
+                  {
+                    "last_affected": "20.5"
+                  },
+                  {
+                    "introduced": "20.6"
+                  },
+                  {
+                    "last_affected": "20.6"
+                  },
+                  {
+                    "introduced": "20.6.1"
+                  },
+                  {
+                    "last_affected": "20.6.1"
+                  },
+                  {
+                    "introduced": "20.7"
+                  },
+                  {
+                    "last_affected": "20.7"
+                  },
+                  {
+                    "introduced": "20.8"
+                  },
+                  {
+                    "last_affected": "20.8"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:sd-wan_vmanage",
+                "cpes": [
+                  "cpe:2.3:a:cisco:sd-wan_vmanage:20.3:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:sd-wan_vmanage:20.4:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:sd-wan_vmanage:20.5:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:sd-wan_vmanage:20.6.1:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:sd-wan_vmanage:20.6:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:sd-wan_vmanage:20.7:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:sd-wan_vmanage:20.8:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "vendor_product": "cisco:secure_firewall_threat_defense",
+                "cpes": [
+                  "cpe:2.3:a:cisco:secure_firewall_threat_defense:6.2.3:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:secure_firewall_threat_defense:6.3.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:secure_firewall_threat_defense:6.4.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:secure_firewall_threat_defense:6.5.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:secure_firewall_threat_defense:6.6.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:secure_firewall_threat_defense:6.7.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:secure_firewall_threat_defense:7.0.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:secure_firewall_threat_defense:7.1.0:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "6.2.3"
+                  },
+                  {
+                    "last_affected": "6.2.3"
+                  },
+                  {
+                    "introduced": "6.3.0"
+                  },
+                  {
+                    "last_affected": "6.3.0"
+                  },
+                  {
+                    "introduced": "6.4.0"
+                  },
+                  {
+                    "last_affected": "6.4.0"
+                  },
+                  {
+                    "introduced": "6.5.0"
+                  },
+                  {
+                    "last_affected": "6.5.0"
+                  },
+                  {
+                    "introduced": "6.6.0"
+                  },
+                  {
+                    "last_affected": "6.6.0"
+                  },
+                  {
+                    "introduced": "6.7.0"
+                  },
+                  {
+                    "last_affected": "6.7.0"
+                  },
+                  {
+                    "introduced": "7.0.0"
+                  },
+                  {
+                    "last_affected": "7.0.0"
+                  },
+                  {
+                    "introduced": "7.1.0"
+                  },
+                  {
+                    "last_affected": "7.1.0"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "vendor_product": "cisco:smart_phy",
+                "cpes": [
+                  "cpe:2.3:a:cisco:smart_phy:21.3:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:smart_phy:3.1.2:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:smart_phy:3.1.3:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:smart_phy:3.1.4:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:smart_phy:3.1.5:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:smart_phy:3.2.1:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "3.1.2"
+                  },
+                  {
+                    "last_affected": "3.1.2"
+                  },
+                  {
+                    "introduced": "3.1.3"
+                  },
+                  {
+                    "last_affected": "3.1.3"
+                  },
+                  {
+                    "introduced": "3.1.4"
+                  },
+                  {
+                    "last_affected": "3.1.4"
+                  },
+                  {
+                    "introduced": "3.1.5"
+                  },
+                  {
+                    "last_affected": "3.1.5"
+                  },
+                  {
+                    "introduced": "3.2.1"
+                  },
+                  {
+                    "last_affected": "3.2.1"
+                  },
+                  {
+                    "introduced": "21.3"
+                  },
+                  {
+                    "last_affected": "21.3"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1a\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1b\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1c\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1d\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1e\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1f\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1g\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1h\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1k\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:ucs_central_software:2.0\\(1l\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "2.0"
+                  },
+                  {
+                    "last_affected": "2.0"
+                  },
+                  {
+                    "introduced": "2.0(1a)"
+                  },
+                  {
+                    "last_affected": "2.0(1a)"
+                  },
+                  {
+                    "introduced": "2.0(1b)"
+                  },
+                  {
+                    "last_affected": "2.0(1b)"
+                  },
+                  {
+                    "introduced": "2.0(1c)"
+                  },
+                  {
+                    "last_affected": "2.0(1c)"
+                  },
+                  {
+                    "introduced": "2.0(1d)"
+                  },
+                  {
+                    "last_affected": "2.0(1d)"
+                  },
+                  {
+                    "introduced": "2.0(1e)"
+                  },
+                  {
+                    "last_affected": "2.0(1e)"
+                  },
+                  {
+                    "introduced": "2.0(1f)"
+                  },
+                  {
+                    "last_affected": "2.0(1f)"
+                  },
+                  {
+                    "introduced": "2.0(1g)"
+                  },
+                  {
+                    "last_affected": "2.0(1g)"
+                  },
+                  {
+                    "introduced": "2.0(1h)"
+                  },
+                  {
+                    "last_affected": "2.0(1h)"
+                  },
+                  {
+                    "introduced": "2.0(1k)"
+                  },
+                  {
+                    "last_affected": "2.0(1k)"
+                  },
+                  {
+                    "introduced": "2.0(1l)"
+                  },
+                  {
+                    "last_affected": "2.0(1l)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:ucs_central_software"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_communications_manager:11.5\\(1.17900.52\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager:11.5\\(1.18119.2\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager:11.5\\(1.18900.97\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager:11.5\\(1.21900.40\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager:11.5\\(1.22900.28\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager:11.5\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager:11.5\\(1\\):*:*:*:-:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager:11.5\\(1\\):*:*:*:session_management:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager:11.5\\(1\\)su3:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "11.5(1)"
+                  },
+                  {
+                    "last_affected": "11.5(1)"
+                  },
+                  {
+                    "introduced": "11.5(1)"
+                  },
+                  {
+                    "last_affected": "11.5(1)"
+                  },
+                  {
+                    "introduced": "11.5(1)"
+                  },
+                  {
+                    "last_affected": "11.5(1)"
+                  },
+                  {
+                    "introduced": "11.5(1)su3"
+                  },
+                  {
+                    "last_affected": "11.5(1)su3"
+                  },
+                  {
+                    "introduced": "11.5(1.17900.52)"
+                  },
+                  {
+                    "last_affected": "11.5(1.17900.52)"
+                  },
+                  {
+                    "introduced": "11.5(1.18119.2)"
+                  },
+                  {
+                    "last_affected": "11.5(1.18119.2)"
+                  },
+                  {
+                    "introduced": "11.5(1.18900.97)"
+                  },
+                  {
+                    "last_affected": "11.5(1.18900.97)"
+                  },
+                  {
+                    "introduced": "11.5(1.21900.40)"
+                  },
+                  {
+                    "last_affected": "11.5(1.21900.40)"
+                  },
+                  {
+                    "introduced": "11.5(1.22900.28)"
+                  },
+                  {
+                    "last_affected": "11.5(1.22900.28)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_communications_manager"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "11.5(1)"
+                  },
+                  {
+                    "last_affected": "11.5(1)"
+                  },
+                  {
+                    "introduced": "11.5(1.22900.6)"
+                  },
+                  {
+                    "last_affected": "11.5(1.22900.6)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_communications_manager_im_&_presence_service",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_communications_manager_im_\\&_presence_service:11.5\\(1.22900.6\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_communications_manager_im_\\&_presence_service:11.5\\(1\\):*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_communications_manager_im_and_presence_service:11.5\\(1\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "11.5(1)"
+                  },
+                  {
+                    "last_affected": "11.5(1)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_communications_manager_im_and_presence_service"
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_computing_system",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_computing_system:006.008\\(001.000\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "006.008(001.000)"
+                  },
+                  {
+                    "last_affected": "006.008(001.000)"
+                  }
+                ]
+              },
+              {
+                "vendor_product": "cisco:unified_contact_center_enterprise",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_contact_center_enterprise:11.6\\(2\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_contact_center_enterprise:12.0\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_contact_center_enterprise:12.5\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_contact_center_enterprise:12.6\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_contact_center_enterprise:12.6\\(2\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "11.6(2)"
+                  },
+                  {
+                    "last_affected": "11.6(2)"
+                  },
+                  {
+                    "introduced": "11.6(2)"
+                  },
+                  {
+                    "last_affected": "11.6(2)"
+                  },
+                  {
+                    "introduced": "12.0(1)"
+                  },
+                  {
+                    "last_affected": "12.0(1)"
+                  },
+                  {
+                    "introduced": "12.5(1)"
+                  },
+                  {
+                    "last_affected": "12.5(1)"
+                  },
+                  {
+                    "introduced": "12.6(1)"
+                  },
+                  {
+                    "last_affected": "12.6(1)"
+                  },
+                  {
+                    "introduced": "12.6(2)"
+                  },
+                  {
+                    "last_affected": "12.6(2)"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_contact_center_express:12.5\\(1\\):-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_contact_center_express:12.5\\(1\\):su1:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_contact_center_express:12.6\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_contact_center_express:12.6\\(2\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "12.5(1)-NA"
+                  },
+                  {
+                    "last_affected": "12.5(1)-NA"
+                  },
+                  {
+                    "introduced": "12.5(1)-su1"
+                  },
+                  {
+                    "last_affected": "12.5(1)-su1"
+                  },
+                  {
+                    "introduced": "12.6(1)"
+                  },
+                  {
+                    "last_affected": "12.6(1)"
+                  },
+                  {
+                    "introduced": "12.6(2)"
+                  },
+                  {
+                    "last_affected": "12.6(2)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_contact_center_express"
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_contact_center_management_portal",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_contact_center_management_portal:12.6\\(1\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "12.6(1)"
+                  },
+                  {
+                    "last_affected": "12.6(1)"
+                  }
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_customer_voice_portal:11.6:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_customer_voice_portal:11.6\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_customer_voice_portal:12.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_customer_voice_portal:12.0\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_customer_voice_portal:12.5:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_customer_voice_portal:12.5\\(1\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_customer_voice_portal:12.6\\(1\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "11.6"
+                  },
+                  {
+                    "last_affected": "11.6"
+                  },
+                  {
+                    "introduced": "12.0"
+                  },
+                  {
+                    "last_affected": "12.0"
+                  },
+                  {
+                    "introduced": "12.5"
+                  },
+                  {
+                    "last_affected": "12.5"
+                  },
+                  {
+                    "introduced": "11.6(1)"
+                  },
+                  {
+                    "last_affected": "11.6(1)"
+                  },
+                  {
+                    "introduced": "12.0(1)"
+                  },
+                  {
+                    "last_affected": "12.0(1)"
+                  },
+                  {
+                    "introduced": "12.5(1)"
+                  },
+                  {
+                    "last_affected": "12.5(1)"
+                  },
+                  {
+                    "introduced": "12.6(1)"
+                  },
+                  {
+                    "last_affected": "12.6(1)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_customer_voice_portal"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_intelligence_center:12.6\\(1\\):-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_intelligence_center:12.6\\(1\\):es01:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_intelligence_center:12.6\\(1\\):es02:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_intelligence_center:12.6\\(2\\):-:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "12.6(1)-NA"
+                  },
+                  {
+                    "last_affected": "12.6(1)-NA"
+                  },
+                  {
+                    "introduced": "12.6(1)-es01"
+                  },
+                  {
+                    "last_affected": "12.6(1)-es01"
+                  },
+                  {
+                    "introduced": "12.6(1)-es02"
+                  },
+                  {
+                    "last_affected": "12.6(1)-es02"
+                  },
+                  {
+                    "introduced": "12.6(2)-NA"
+                  },
+                  {
+                    "last_affected": "12.6(2)-NA"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_intelligence_center"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_sip_proxy:010.000\\(000\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_sip_proxy:010.000\\(001\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_sip_proxy:010.002\\(000\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unified_sip_proxy:010.002\\(001\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "010.000(000)"
+                  },
+                  {
+                    "last_affected": "010.000(000)"
+                  },
+                  {
+                    "introduced": "010.000(001)"
+                  },
+                  {
+                    "last_affected": "010.000(001)"
+                  },
+                  {
+                    "introduced": "010.002(000)"
+                  },
+                  {
+                    "last_affected": "010.002(000)"
+                  },
+                  {
+                    "introduced": "010.002(001)"
+                  },
+                  {
+                    "last_affected": "010.002(001)"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_sip_proxy"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:cisco:unified_workforce_optimization:11.5\\(1\\):sr7:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "11.5(1)-sr7"
+                  },
+                  {
+                    "last_affected": "11.5(1)-sr7"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:unified_workforce_optimization"
+              },
+              {
+                "vendor_product": "cisco:unity_connection",
+                "cpes": [
+                  "cpe:2.3:a:cisco:unity_connection:11.5:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:unity_connection:11.5\\(1.10000.6\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "11.5"
+                  },
+                  {
+                    "last_affected": "11.5"
+                  },
+                  {
+                    "introduced": "11.5(1.10000.6)"
+                  },
+                  {
+                    "last_affected": "11.5(1.10000.6)"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:video_surveillance_manager",
+                "cpes": [
+                  "cpe:2.3:a:cisco:video_surveillance_manager:7.14\\(1.26\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:video_surveillance_manager:7.14\\(2.26\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:video_surveillance_manager:7.14\\(3.025\\):*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:video_surveillance_manager:7.14\\(4.018\\):*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "7.14(1.26)"
+                  },
+                  {
+                    "last_affected": "7.14(1.26)"
+                  },
+                  {
+                    "introduced": "7.14(2.26)"
+                  },
+                  {
+                    "last_affected": "7.14(2.26)"
+                  },
+                  {
+                    "introduced": "7.14(3.025)"
+                  },
+                  {
+                    "last_affected": "7.14(3.025)"
+                  },
+                  {
+                    "introduced": "7.14(4.018)"
+                  },
+                  {
+                    "last_affected": "7.14(4.018)"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "2.6.6"
+                  },
+                  {
+                    "last_affected": "2.6.6"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:virtual_topology_system",
+                "cpes": [
+                  "cpe:2.3:a:cisco:virtual_topology_system:2.6.6:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "7.1.3"
+                  },
+                  {
+                    "last_affected": "7.1.3"
+                  },
+                  {
+                    "introduced": "7.2.1"
+                  },
+                  {
+                    "last_affected": "7.2.1"
+                  },
+                  {
+                    "introduced": "7.2.2"
+                  },
+                  {
+                    "last_affected": "7.2.2"
+                  },
+                  {
+                    "introduced": "7.2.3"
+                  },
+                  {
+                    "last_affected": "7.2.3"
+                  },
+                  {
+                    "introduced": "7.3"
+                  },
+                  {
+                    "last_affected": "7.3"
+                  },
+                  {
+                    "introduced": "7.4"
+                  },
+                  {
+                    "last_affected": "7.4"
+                  },
+                  {
+                    "introduced": "7.5"
+                  },
+                  {
+                    "last_affected": "7.5"
+                  },
+                  {
+                    "introduced": "7.6"
+                  },
+                  {
+                    "last_affected": "7.6"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:wan_automation_engine",
+                "cpes": [
+                  "cpe:2.3:a:cisco:wan_automation_engine:7.1.3:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:wan_automation_engine:7.2.1:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:wan_automation_engine:7.2.2:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:wan_automation_engine:7.2.3:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:wan_automation_engine:7.3:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:wan_automation_engine:7.4:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:wan_automation_engine:7.5:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:wan_automation_engine:7.6:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "3.0-NA"
+                  },
+                  {
+                    "last_affected": "3.0-NA"
+                  },
+                  {
+                    "introduced": "3.0-maintenance_release1"
+                  },
+                  {
+                    "last_affected": "3.0-maintenance_release1"
+                  },
+                  {
+                    "introduced": "3.0-maintenance_release2"
+                  },
+                  {
+                    "last_affected": "3.0-maintenance_release2"
+                  },
+                  {
+                    "introduced": "3.0-maintenance_release3"
+                  },
+                  {
+                    "last_affected": "3.0-maintenance_release3"
+                  },
+                  {
+                    "introduced": "3.0-maintenance_release3"
+                  },
+                  {
+                    "last_affected": "3.0-maintenance_release3"
+                  },
+                  {
+                    "introduced": "3.0-maintenance_release3_security_patch4"
+                  },
+                  {
+                    "last_affected": "3.0-maintenance_release3_security_patch4"
+                  },
+                  {
+                    "introduced": "3.0-maintenance_release3_security_patch5"
+                  },
+                  {
+                    "last_affected": "3.0-maintenance_release3_security_patch5"
+                  },
+                  {
+                    "introduced": "3.0-maintenance_release3_service_pack_2"
+                  },
+                  {
+                    "last_affected": "3.0-maintenance_release3_service_pack_2"
+                  },
+                  {
+                    "introduced": "3.0-maintenance_release3_service_pack_3"
+                  },
+                  {
+                    "last_affected": "3.0-maintenance_release3_service_pack_3"
+                  },
+                  {
+                    "introduced": "3.0-maintenance_release4"
+                  },
+                  {
+                    "last_affected": "3.0-maintenance_release4"
+                  },
+                  {
+                    "introduced": "4.0-NA"
+                  },
+                  {
+                    "last_affected": "4.0-NA"
+                  },
+                  {
+                    "introduced": "4.0-maintenance_release1"
+                  },
+                  {
+                    "last_affected": "4.0-maintenance_release1"
+                  },
+                  {
+                    "introduced": "4.0-maintenance_release2"
+                  },
+                  {
+                    "last_affected": "4.0-maintenance_release2"
+                  },
+                  {
+                    "introduced": "4.0-maintenance_release3"
+                  },
+                  {
+                    "last_affected": "4.0-maintenance_release3"
+                  },
+                  {
+                    "introduced": "3.0"
+                  },
+                  {
+                    "last_affected": "3.0"
+                  },
+                  {
+                    "introduced": "4.0"
+                  },
+                  {
+                    "last_affected": "4.0"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "cisco:webex_meetings_server",
+                "cpes": [
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:maintenance_release1:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:maintenance_release2:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:maintenance_release3:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:maintenance_release3:-:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:maintenance_release3_security_patch4:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:maintenance_release3_security_patch5:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:maintenance_release3_service_pack_2:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:maintenance_release3_service_pack_3:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:3.0:maintenance_release4:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:4.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:4.0:-:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:4.0:maintenance_release1:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:4.0:maintenance_release2:*:*:*:*:*:*",
+                  "cpe:2.3:a:cisco:webex_meetings_server:4.0:maintenance_release3:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "debian:debian_linux",
+                "cpes": [
+                  "cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:debian:debian_linux:11.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "9.0"
+                  },
+                  {
+                    "last_affected": "9.0"
+                  },
+                  {
+                    "introduced": "10.0"
+                  },
+                  {
+                    "last_affected": "10.0"
+                  },
+                  {
+                    "introduced": "11.0"
+                  },
+                  {
+                    "last_affected": "11.0"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "34"
+                  },
+                  {
+                    "last_affected": "34"
+                  },
+                  {
+                    "introduced": "35"
+                  },
+                  {
+                    "last_affected": "35"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "fedoraproject:fedora",
+                "cpes": [
+                  "cpe:2.3:o:fedoraproject:fedora:34:*:*:*:*:*:*:*",
+                  "cpe:2.3:o:fedoraproject:fedora:35:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:siemens:capital:2019.1:-:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:capital:2019.1:sp1912:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "2019.1-NA"
+                  },
+                  {
+                    "last_affected": "2019.1-NA"
+                  },
+                  {
+                    "introduced": "2019.1-sp1912"
+                  },
+                  {
+                    "last_affected": "2019.1-sp1912"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:capital"
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "3.0"
+                  },
+                  {
+                    "last_affected": "3.0"
+                  },
+                  {
+                    "introduced": "4.0"
+                  },
+                  {
+                    "last_affected": "4.0"
+                  },
+                  {
+                    "introduced": "4.1"
+                  },
+                  {
+                    "last_affected": "4.1"
+                  },
+                  {
+                    "introduced": "4.2"
+                  },
+                  {
+                    "last_affected": "4.2"
+                  },
+                  {
+                    "introduced": "5.0"
+                  },
+                  {
+                    "last_affected": "5.0"
+                  },
+                  {
+                    "introduced": "5.1"
+                  },
+                  {
+                    "last_affected": "5.1"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:desigo_cc_advanced_reports",
+                "cpes": [
+                  "cpe:2.3:a:siemens:desigo_cc_advanced_reports:3.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:desigo_cc_advanced_reports:4.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:desigo_cc_advanced_reports:4.1:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:desigo_cc_advanced_reports:4.2:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:desigo_cc_advanced_reports:5.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:desigo_cc_advanced_reports:5.1:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "5.0"
+                  },
+                  {
+                    "last_affected": "5.0"
+                  },
+                  {
+                    "introduced": "5.1"
+                  },
+                  {
+                    "last_affected": "5.1"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:desigo_cc_info_center",
+                "cpes": [
+                  "cpe:2.3:a:siemens:desigo_cc_info_center:5.0:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:desigo_cc_info_center:5.1:*:*:*:*:*:*:*"
+                ]
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:energy_engage",
+                "cpes": [
+                  "cpe:2.3:a:siemens:energy_engage:3.1:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "3.1"
+                  },
+                  {
+                    "last_affected": "3.1"
+                  }
+                ]
+              },
+              {
+                "vendor_product": "siemens:energyip",
+                "cpes": [
+                  "cpe:2.3:a:siemens:energyip:8.5:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:energyip:8.6:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:energyip:8.7:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:energyip:9.0:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "8.5"
+                  },
+                  {
+                    "last_affected": "8.5"
+                  },
+                  {
+                    "introduced": "8.6"
+                  },
+                  {
+                    "last_affected": "8.6"
+                  },
+                  {
+                    "introduced": "8.7"
+                  },
+                  {
+                    "last_affected": "8.7"
+                  },
+                  {
+                    "introduced": "9.0"
+                  },
+                  {
+                    "last_affected": "9.0"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:siemens:sentron_powermanager:4.1:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:sentron_powermanager:4.2:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "4.1"
+                  },
+                  {
+                    "last_affected": "4.1"
+                  },
+                  {
+                    "introduced": "4.2"
+                  },
+                  {
+                    "last_affected": "4.2"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:sentron_powermanager"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:siemens:sipass_integrated:2.80:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:sipass_integrated:2.85:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "2.80"
+                  },
+                  {
+                    "last_affected": "2.80"
+                  },
+                  {
+                    "introduced": "2.85"
+                  },
+                  {
+                    "last_affected": "2.85"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:sipass_integrated"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:siemens:siveillance_identity:1.5:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:siveillance_identity:1.6:*:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "1.5"
+                  },
+                  {
+                    "last_affected": "1.5"
+                  },
+                  {
+                    "introduced": "1.6"
+                  },
+                  {
+                    "last_affected": "1.6"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:siveillance_identity"
+              },
+              {
+                "vendor_product": "siemens:solid_edge_harness_design",
+                "cpes": [
+                  "cpe:2.3:a:siemens:solid_edge_harness_design:2020:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:solid_edge_harness_design:2020:-:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:solid_edge_harness_design:2020:sp2002:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "2020"
+                  },
+                  {
+                    "last_affected": "2020"
+                  },
+                  {
+                    "introduced": "2020-NA"
+                  },
+                  {
+                    "last_affected": "2020-NA"
+                  },
+                  {
+                    "introduced": "2020-sp2002"
+                  },
+                  {
+                    "last_affected": "2020-sp2002"
+                  }
+                ],
+                "source": "CPE_STRING"
+              },
+              {
+                "cpes": [
+                  "cpe:2.3:a:siemens:spectrum_power_4:4.70:-:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:spectrum_power_4:4.70:sp7:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:spectrum_power_4:4.70:sp8:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "4.70-NA"
+                  },
+                  {
+                    "last_affected": "4.70-NA"
+                  },
+                  {
+                    "introduced": "4.70-sp7"
+                  },
+                  {
+                    "last_affected": "4.70-sp7"
+                  },
+                  {
+                    "introduced": "4.70-sp8"
+                  },
+                  {
+                    "last_affected": "4.70-sp8"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:spectrum_power_4"
+              },
+              {
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:spectrum_power_7",
+                "cpes": [
+                  "cpe:2.3:a:siemens:spectrum_power_7:2.30:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:spectrum_power_7:2.30:-:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:spectrum_power_7:2.30:sp2:*:*:*:*:*:*"
+                ],
+                "extracted_events": [
+                  {
+                    "introduced": "2.30"
+                  },
+                  {
+                    "last_affected": "2.30"
+                  },
+                  {
+                    "introduced": "2.30-NA"
+                  },
+                  {
+                    "last_affected": "2.30-NA"
+                  },
+                  {
+                    "introduced": "2.30-sp2"
+                  },
+                  {
+                    "last_affected": "2.30-sp2"
+                  }
+                ]
+              },
+              {
+                "extracted_events": [
+                  {
+                    "introduced": "2019.1"
+                  },
+                  {
+                    "last_affected": "2019.1"
+                  },
+                  {
+                    "introduced": "2019.1-NA"
+                  },
+                  {
+                    "last_affected": "2019.1-NA"
+                  },
+                  {
+                    "introduced": "2019.1-sp1912"
+                  },
+                  {
+                    "last_affected": "2019.1-sp1912"
+                  },
+                  {
+                    "introduced": "2020.1-NA"
+                  },
+                  {
+                    "last_affected": "2020.1-NA"
+                  },
+                  {
+                    "introduced": "2021.1-NA"
+                  },
+                  {
+                    "last_affected": "2021.1-NA"
+                  }
+                ],
+                "source": "CPE_STRING",
+                "vendor_product": "siemens:vesys",
+                "cpes": [
+                  "cpe:2.3:a:siemens:vesys:2019.1:*:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:vesys:2019.1:-:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:vesys:2019.1:sp1912:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:vesys:2020.1:-:*:*:*:*:*:*",
+                  "cpe:2.3:a:siemens:vesys:2021.1:-:*:*:*:*:*:*"
+                ]
+              }
+            ]
+          },
+          "references": [
+            {
+              "type": "WEB",
+              "url": "https://github.com/cisagov/log4j-affected-db/blob/develop/SOFTWARE-LIST.md"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://packetstormsecurity.com/files/165225/Apache-Log4j2-2.14.1-Remote-Code-Execution.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://packetstormsecurity.com/files/165260/VMware-Security-Advisory-2021-0028.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://packetstormsecurity.com/files/165281/Log4j2-Log4Shell-Regexes.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://packetstormsecurity.com/files/165282/Log4j-Payload-Generator.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://packetstormsecurity.com/files/165306/L4sh-Log4j-Remote-Code-Execution.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://packetstormsecurity.com/files/165307/Log4j-Remote-Code-Execution-Word-Bypassing.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://packetstormsecurity.com/files/165311/log4j-scan-Extensive-Scanner.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://packetstormsecurity.com/files/167794/Open-Xchange-App-Suite-7.10.x-Cross-Site-Scripting-Command-Injection.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://packetstormsecurity.com/files/171626/AD-Manager-Plus-7122-Remote-Code-Execution.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://seclists.org/fulldisclosure/2022/Jul/11"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://seclists.org/fulldisclosure/2022/Mar/23"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://www.openwall.com/lists/oss-security/2021/12/10/1"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://www.openwall.com/lists/oss-security/2021/12/10/2"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://www.openwall.com/lists/oss-security/2021/12/10/3"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://www.openwall.com/lists/oss-security/2021/12/13/1"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://www.openwall.com/lists/oss-security/2021/12/13/2"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://www.openwall.com/lists/oss-security/2021/12/14/4"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "http://www.openwall.com/lists/oss-security/2021/12/15/3"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://cert-portal.siemens.com/productcert/pdf/ssa-397453.pdf"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://cert-portal.siemens.com/productcert/pdf/ssa-479842.pdf"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://cert-portal.siemens.com/productcert/pdf/ssa-661247.pdf"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://cert-portal.siemens.com/productcert/pdf/ssa-714170.pdf"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://github.com/cisagov/log4j-affected-db"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://lists.debian.org/debian-lts-announce/2021/12/msg00007.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/M5CSVUNV4HWZZXGOKNSK6L7RPM7BOKIB/"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/VU57UJDCFIASIO35GC55JMKSRXJMCDFM/"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://logging.apache.org/log4j/2.x/security.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2021-0032"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://security.netapp.com/advisory/ntap-20211210-0007/"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://support.apple.com/kb/HT213189"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://www.bentley.com/en/common-vulnerability-exposure/be-2022-0001"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2021-44228"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://www.debian.org/security/2021/dsa-5020"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00646.html"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://www.kb.cert.org/vuls/id/930724"
+            },
+            {
+              "type": "ADVISORY",
+              "url": "https://www.oracle.com/security-alerts/alert-cve-2021-44228.html"
+            },
+            {
+              "type": "FIX",
+              "url": "https://msrc-blog.microsoft.com/2021/12/11/microsofts-response-to-cve-2021-44228-apache-log4j2/"
+            },
+            {
+              "type": "FIX",
+              "url": "https://www.oracle.com/security-alerts/cpuapr2022.html"
+            },
+            {
+              "type": "FIX",
+              "url": "https://www.oracle.com/security-alerts/cpujan2022.html"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "http://packetstormsecurity.com/files/165261/Apache-Log4j2-2.14.1-Information-Disclosure.html"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "http://packetstormsecurity.com/files/165270/Apache-Log4j2-2.14.1-Remote-Code-Execution.html"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "http://packetstormsecurity.com/files/165371/VMware-Security-Advisory-2021-0028.4.html"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "http://packetstormsecurity.com/files/165532/Log4Shell-HTTP-Header-Injection.html"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "http://packetstormsecurity.com/files/165642/VMware-vCenter-Server-Unauthenticated-Log4Shell-JNDI-Injection-Remote-Code-Execution.html"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "http://packetstormsecurity.com/files/165673/UniFi-Network-Application-Unauthenticated-Log4Shell-Remote-Code-Execution.html"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "http://packetstormsecurity.com/files/167917/MobileIron-Log4Shell-Remote-Command-Execution.html"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "http://seclists.org/fulldisclosure/2022/Dec/2"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "https://github.com/nu11secur1ty/CVE-mitre/tree/main/CVE-2021-44228"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "https://twitter.com/kurtseifried/status/1469345530182455296"
+            },
+            {
+              "type": "EVIDENCE",
+              "url": "https://www.nu11secur1ty.com/2021/12/cve-2021-44228.html"
+            }
+          ],
+          "affected": [
+            {
+              "ranges": [
+                {
+                  "type": "GIT",
+                  "repo": "https://github.com/apache/logging-log4j2",
+                  "events": [
+                    {
+                      "introduced": "6b788facd3479dfe9052b3a5e13f6603dce8c16f"
+                    },
+                    {
+                      "fixed": "38513a7d57343881f7bf58f37e67d6a87e0a47c5"
+                    },
+                    {
+                      "introduced": "0"
+                    },
+                    {
+                      "fixed": "ad361d2e517e765f69db464d9407ac2dd80bc93e"
+                    },
+                    {
+                      "introduced": "9dcb1823a0a0192f2016daf7c1445ddfb3435fbf"
+                    },
+                    {
+                      "fixed": "c30a1398a6697fb832c650870c44284d0052103e"
+                    },
+                    {
+                      "introduced": "8d9204a4b4c6016fa6b36513a46502689d6a45c1"
+                    },
+                    {
+                      "last_affected": "8d9204a4b4c6016fa6b36513a46502689d6a45c1"
+                    }
+                  ],
+                  "database_specific": {
+                    "source": [
+                      "CPE_RANGE",
+                      "CPE_STRING"
+                    ],
+                    "cpe": [
+                      "cpe:2.3:a:apache:log4j:*:*:*:*:*:*:*:*",
+                      "cpe:2.3:a:apache:log4j:2.0:-:*:*:*:*:*:*"
+                    ],
+                    "extracted_events": [
+                      {
+                        "introduced": "2.0.1"
+                      },
+                      {
+                        "fixed": "2.3.1"
+                      },
+                      {
+                        "introduced": "2.4.0"
+                      },
+                      {
+                        "fixed": "2.12.2"
+                      },
+                      {
+                        "introduced": "2.13.0"
+                      },
+                      {
+                        "fixed": "2.15.0"
+                      },
+                      {
+                        "introduced": "2.0-NA"
+                      },
+                      {
+                        "last_affected": "2.0-NA"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "versions": [
+                "2.0-NA",
+                "rel/2.3",
+                "log4j-2.3",
+                "rel/2.12.1",
+                "log4j-2.12.1-rc1",
+                "log4j-2.12.1",
+                "log4j-2.15.0-rc1",
+                "rel/2.14.1",
+                "log4j-2.14.1-rc1",
+                "rel/2.14.0",
+                "log4j-2.14.0-rc1",
+                "rel/2.13.3",
+                "log4j-2.13.3-rc1",
+                "log4j-2.13.3",
+                "rel/2.13.2",
+                "log4j-2.13.2-rc1",
+                "log4j-2.13.2",
+                "rel/2.13.1",
+                "log4j-2.13.1-rc2",
+                "log4j-2.13.1",
+                "log4j-2.13.1-rc1",
+                "rel/2.13.0",
+                "log4j-2.13.0-rc2",
+                "log4j-2.12.0-rc2",
+                "rel/2.12.0",
+                "log4j-2.12.0-rc1",
+                "log4j-2.12.0",
+                "rel/2.11.2",
+                "log4j-2.11.2-rc3",
+                "log4j-2.11.2",
+                "log4j-2.11.2-rc2",
+                "log4j-2.11.2-rc1",
+                "rel/2.11.1",
+                "log4j-2.11.1-rc1",
+                "log4j-2.11.1",
+                "rel/2.11.0",
+                "log4j-2.11.0-rc1",
+                "log4j-2.11.0",
+                "rel/2.10.0",
+                "log4j-2.10.0",
+                "log4j-2.10-rc1",
+                "log4j-2.9.1-rc1",
+                "rel/2.9.0",
+                "log4j-2.9.0",
+                "log4j-2.9-rc1",
+                "rel/2.8.1",
+                "log4j-2.8.1-rc1",
+                "log4j-2.8.1",
+                "rel/2.8",
+                "log4j-2.8-rc1",
+                "log4j-2.8",
+                "rel/2.7",
+                "log4j-2.7-rc2",
+                "log4j-2.7",
+                "log4j-2.7-rc1",
+                "rel/2.5",
+                "log4j-2.5-rc1",
+                "log4j-2.5",
+                "rel/2.4.1",
+                "log4j-2.4.1",
+                "rel/2.4",
+                "log4j-2.4",
+                "rel/2.1",
+                "log4j-2.1",
+                "log4j-2.1-rc3",
+                "log4j-2.1-rc2",
+                "rel/2.0",
+                "log4j-2.0"
+              ],
+              "database_specific": {
+                "source": "https://storage.googleapis.com/cve-osv-conversion/osv-output/CVE-2021-44228.json"
+              }
+            }
+          ],
+          "schema_version": "1.9.0",
+          "severity": [
+            {
+              "type": "CVSS_V3",
+              "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
+            }
+          ]
+        }
+      ],
+      "exploit_db_refs": [
+        {
+          "id": "EDB-50590",
+          "title": "['50590', 'Apache Log4j2 2.14.1 - Information Disclosure']",
+          "description": "Platform: {'id': '50', 'platform': 'Java'} | Type: {'id': '3', 'name': 'remote', 'display': 'Remote'}",
+          "url": "https://www.exploit-db.com/exploits/50590",
+          "published": "2021-12-14",
+          "verified": 0,
+          "tags": [
+            {
+              "id": "3",
+              "name": "remote",
+              "display": "Remote"
+            },
+            {
+              "id": "50",
+              "platform": "Java"
+            }
+          ]
+        },
+        {
+          "id": "EDB-50592",
+          "title": "['50592', 'Apache Log4j 2 - Remote Code Execution (RCE)']",
+          "description": "Platform: {'id': '50', 'platform': 'Java'} | Type: {'id': '3', 'name': 'remote', 'display': 'Remote'}",
+          "url": "https://www.exploit-db.com/exploits/50592",
+          "published": "2021-12-14",
+          "verified": 0,
+          "tags": [
+            {
+              "id": "3",
+              "name": "remote",
+              "display": "Remote"
+            },
+            {
+              "id": "50",
+              "platform": "Java"
+            }
+          ]
+        },
+        {
+          "id": "EDB-51183",
+          "title": "['51183', 'AD Manager Plus 7122 - Remote Code Execution (RCE)']",
+          "description": "Platform: {'id': '50', 'platform': 'Java'} | Type: {'id': '3', 'name': 'remote', 'display': 'Remote'}",
+          "url": "https://www.exploit-db.com/exploits/51183",
+          "published": "2023-04-01",
+          "verified": 0,
+          "tags": [
+            {
+              "id": "3",
+              "name": "remote",
+              "display": "Remote"
+            },
+            {
+              "id": "50",
+              "platform": "Java"
+            }
+          ]
+        }
+      ],
+      "ghsa_refs": [
+        {
+          "ghsa_id": "GHSA-mf7q-r4rv-jv94",
+          "cve_id": "GHSA-mf7q-r4rv-jv94",
+          "title": "Crossplane's TOCTOU between cosign verification and image fetch in xpkg.CachedClient allows tag-based package install to bypass signature check",
+          "description": "## Summary\n\nCrossplane allows package signature verification to be configured via the `ImageConfig` mechanism. When enabled, the package manager uses cosign to verify that packages are correctly signed before pulling and installing them.\n\nWhen a package is installed using a tag reference (e.g., a semantic version), a malicious OCI registry could serve a correctly signed image for verification, then subsequently serve an unsigned image for installation. This is possible because Crossplane resolves the tag reference separately for each step.\n\nThis vulnerability is relevant only for users who do all three of the following:\n\n1. Configure signature verification for packages,\n2. Install packages using tag references rather than digests, and\n3. Install packages from registries they do not control.\n\n## Mitigation\n\nInstalling packages by image digest rather than using tags avoids this issue.\n\n## Fix\n\nThe package manager has been updated to resolve tag references once and use the resulting digest for both signature verification and image fetching. This ensures that Crossplane pulls the same content that had its signature verified. The fix has been applied to Crossplane's `main` branch and backported to the v2.3 and v2.2 release branches; it will be released in v2.3.3 and v2.2.3.\n\n## Credits\n\nThis issue was reported, independently, by @bugbunny-research and @tonghuaroot.",
+          "severity": "HIGH",
+          "cvss_score": null,
+          "url": "https://github.com/advisories/GHSA-mf7q-r4rv-jv94",
+          "published": "2026-08-27",
+          "tags": [
+            "github.com/crossplane/crossplane-runtime/v2",
+            "github.com/crossplane/crossplane-runtime/v2"
+          ]
+        },
+        {
+          "ghsa_id": "GHSA-gmxc-r82q-347r",
+          "cve_id": "CVE-2026-54732",
+          "title": "libreoffice-convert vulnerable to path traversal / arbitrary file write",
+          "description": "### Impact\noptions.fileName is used to build a filesystem path\n(path.join(tempDir.name, fileName)) and the caller-supplied document buffer is\nwritten there, but fileName is never reduced to a base name. A fileName containing\n\"../\" escapes the temporary directory, so a caller can write arbitrary content to an\narbitrary path the process can write to (e.g. ~/.ssh/authorized_keys, an /etc/cron.d\nentry, or a web root).\n\n### Patches\nVersion 1.8.2 uses `path.basename` on `filename` to make sure the temp directory can not be escaped.\n\n### Workarounds\nMake sure you supply the filename yourself and don't have it user supplied or use `path.basename` on `filename` before using it in `libreoffice-convert`.",
+          "severity": "MEDIUM",
+          "cvss_score": 6.5,
+          "url": "https://github.com/advisories/GHSA-gmxc-r82q-347r",
+          "published": "2026-08-27",
+          "tags": [
+            "libreoffice-convert"
+          ]
+        },
+        {
+          "ghsa_id": "GHSA-39mm-rwm3-29jp",
+          "cve_id": "CVE-2026-54718",
+          "title": "silverstripe-advancedworkflow vulnerable to remote code execution via advanced workflow email template",
+          "description": "### Impact\nThe advanced workflow email template field is vulnerable to a specially crafted payload that can be used to run arbitrary code on the server.\n\n### Reported by\nSteve Boyd\nSilverstripe Ltd.",
+          "severity": "HIGH",
+          "cvss_score": 7.2,
+          "url": "https://github.com/advisories/GHSA-39mm-rwm3-29jp",
+          "published": "2026-08-27",
+          "tags": [
+            "symbiote/silverstripe-advancedworkflow",
+            "symbiote/silverstripe-advancedworkflow",
+            "symbiote/silverstripe-advancedworkflow"
+          ]
+        },
+        {
+          "ghsa_id": "GHSA-g7gw-m874-7rmf",
+          "cve_id": "CVE-2026-42350",
+          "title": "Kargo has Open Redirect in UI OIDC Login Flow via redirectTo Query Parameter",
+          "description": "## Summary\n\nThe Kargo UI reads a `redirectTo` query parameter on the `/login` and `/token-renew` routes and, following a successful OIDC authentication, uses its value as the destination for client-side navigation. The parameter is treated as a path string but is not constrained to targets within the UI's own origin. Protocol-relative values (e.g. `//attacker.example.com`) and values using a backslash prefix (e.g. `/\\attacker.example.com`) are accepted and result in navigation to an external origin.\n\nAn attacker can exploit this by crafting a URL of the form `https://kargo.example.com/login?redirectTo=/token-renew?redirectTo=/\\attacker.example.com` and delivering it to a victim through any channel that permits link sharing. When the victim follows the link and signs in to Kargo, the browser is redirected to the attacker-controlled origin. Because the initial URL resolves to the legitimate Kargo host and the user is genuinely authenticated in the process, the redirect inherits the perceived trust of the user's own Kargo instance.\n\nThe principal risk is that such a redirect can serve as a stepping stone for credentials phishing. The attacker-controlled page can present a UI resembling Kargo or an associated identity provider and solicit credentials from the user. The vulnerability does not, by itself, expose any data from Kargo or permit modification of Kargo resources, and it does not affect authentication when Kargo's built-in admin credentials are used.\n\n## Base Metrics\n\nThe following sections provide the rationale for the values selected for each of CVSS v4's base metrics. The resulting vector is `CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:N/VI:N/VA:N/SC:N/SI:N/SA:N`, which scores 0.0 (None). This reflects a known limitation of CVSS v4: the standard scopes impact to direct consequences of exploitation, and so does not capture vulnerabilities whose operational significance lies in enabling multi-step attacks. The open redirect here fits that pattern \u2014 its immediate effect is benign navigation, and any meaningful harm depends on additional attacker-controlled infrastructure and voluntary actions by the victim. Kargo classifies this vulnerability's severity as Low on a qualitative basis, reflecting the real but bounded operational risk that open redirects pose.\n\n### Attack Vector (AV): Network\n\nThe Kargo UI is served by the Kargo API server over HTTP/HTTPS. No local, adjacent network, or physical access is required.\n\n### Attack Complexity (AC): Low\n\nExploitation requires only a crafted URL. No race conditions, non-default configurations, or prior information gathering are required.\n\n### Attack Requirements (AT): None\n\nNo specific environmental conditions are required beyond a Kargo deployment configured for OIDC authentication, which is the expected configuration for any non-development deployment.\n\n### Privileges Required (PR): None\n\nThe attacker does not need to authenticate to Kargo or hold any permissions. The victim's own authentication completes the redirect.\n\n### User Interaction (UI): Active\n\nExploitation requires a victim to follow the crafted link and then complete the OIDC sign-in flow. Absent this interaction, no redirect occurs.\n\n### Confidentiality Impact to Vulnerable System (VC): None\n\nThe vulnerability does not expose any data from the Kargo control plane.\n\n### Integrity Impact to Vulnerable System (VI): None\n\nThe vulnerability does not permit modification of any data or configuration within Kargo.\n\n### Availability Impact to Vulnerable System (VA): None\n\nThe vulnerability does not provide any mechanism for denial of service against Kargo.\n\n### Confidentiality Impact to Subsequent Systems (SC): None\n\nThe direct consequence of exploitation is navigation to an attacker-controlled URL. Any resulting compromise of the victim's credentials or other data requires the attacker to stage a convincing phishing page and the victim to voluntarily submit information to it \u2014 neither action is performed by the exploit itself. CVSS v4 scopes impact to direct consequences of exploitation, so the enabled phishing scenario is not reflected here.\n\n### Integrity Impact to Subsequent Systems (SI): None\n\nThe vulnerability does not modify any data on downstream systems. Tampering an attacker might perform using credentials phished via the enabled redirect would be a consequence of a follow-on attack, not of this vulnerability.\n\n### Availability Impact to Subsequent Systems (SA): None\n\nThe vulnerability does not provide any mechanism to degrade the availability of downstream systems.\n\n## Mitigating Factors\n\n- Exploitation is contingent on social engineering. A victim must both follow the crafted link and complete an authentication flow for the redirect to fire.\n\n- The vulnerability does not directly compromise Kargo or expose any Kargo-held data. Impact is limited to enabling an attacker-controlled destination to be reached via a legitimate Kargo URL.\n\n- There is no evidence of exploitation in the wild.",
+          "severity": "LOW",
+          "cvss_score": null,
+          "url": "https://github.com/advisories/GHSA-g7gw-m874-7rmf",
+          "published": "2026-08-27",
+          "tags": [
+            "github.com/akuity/kargo",
+            "github.com/akuity/kargo",
+            "github.com/akuity/kargo",
+            "github.com/akuity/kargo"
+          ]
+        }
+      ],
+      "vendor_advisories": [
+        {
+          "vendor": "Red Hat",
+          "advisory_id": "CVE-2021-44228",
+          "title": "log4j-core: Remote code execution in Log4j 2.x when logs contain an attacker-controlled string value",
+          "severity": "CRITICAL",
+          "cvss3_score": "9.8",
+          "cvss3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "mitigation": "For Log4j versions >=2.10\nset the system property log4j2.formatMsgNoLookups or the environment variable LOG4J_FORMAT_MSG_NO_LOOKUPS to true\nFor Log4j versions >=2.7 and <=2.14.1\nall PatternLayout patterns can be modified to specify the message converter as %m{nolookups} instead of just %m\nFor Log4j versions >=2.0-beta9 and <=2.10.0\nremove the JndiLookup class from the classpath. For example: \n```\nzip -q -d log4j-core-*.jar org/apache/logging/log4j/core/lookup/JndiLookup.class\n```\nOn OpenShift 4 and in OpenShift Logging, the above mitigation can be applied by following the steps in this article: https://access.redhat.com/solutions/6578421\nOn OpenShift 3.11, mitigation to the affected Elasticsearch component can be applied by following the steps in this article: https://access.redhat.com/solutions/6578441",
+          "affected_packages": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "url": "https://access.redhat.com/security/cve/CVE-2021-44228"
+        }
+      ],
+      "published_date": "2026-08-27",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-44228",
+        "https://www.exploit-db.com/exploits/50590",
+        "https://www.exploit-db.com/exploits/50592",
+        "https://www.exploit-db.com/exploits/51183"
+      ],
+      "raw_content": "",
+      "tokens": [
+        "cve-2021-44228",
+        "cve-2021-44228",
+        "apache",
+        "log4j2",
+        "2.0-beta9",
+        "through",
+        "2.15.0",
+        "excluding",
+        "security",
+        "releases",
+        "2.12.2",
+        "2.12.3",
+        "and",
+        "2.3.1",
+        "jndi",
+        "features",
+        "used",
+        "in",
+        "configuration",
+        "log",
+        "messages",
+        "and",
+        "parameters",
+        "do",
+        "not",
+        "protect",
+        "against",
+        "attacker",
+        "controlled",
+        "ldap",
+        "and",
+        "other",
+        "jndi",
+        "related",
+        "endpoints.",
+        "an",
+        "attacker",
+        "who",
+        "can",
+        "control",
+        "log",
+        "messages",
+        "or",
+        "log",
+        "message",
+        "parameters",
+        "can",
+        "execute",
+        "arbitrary",
+        "code",
+        "loaded",
+        "from",
+        "ldap",
+        "servers",
+        "when",
+        "message",
+        "lookup",
+        "substitution",
+        "is",
+        "enabled.",
+        "from",
+        "log4j",
+        "2.15.0",
+        "this",
+        "behavior",
+        "has",
+        "been",
+        "disabled",
+        "by",
+        "default.",
+        "from",
+        "version",
+        "2.16.0",
+        "along",
+        "with",
+        "2.12.2",
+        "2.12.3",
+        "and",
+        "2.3.1",
+        "this",
+        "functionality",
+        "has",
+        "been",
+        "completely",
+        "removed.",
+        "note",
+        "that",
+        "this",
+        "vulnerability",
+        "is",
+        "specific",
+        "to",
+        "log4j-core",
+        "and",
+        "does",
+        "not",
+        "affect",
+        "log4net",
+        "log4cxx",
+        "or",
+        "other",
+        "apache",
+        "logging",
+        "services",
+        "projects.",
+        "cpe:2.3:a:generic:cve-2021-44228:",
+        ":",
+        ":",
+        ":",
+        ":",
+        ":",
+        ":",
+        ":",
+        "edb-50590",
+        "50590",
+        "apache",
+        "log4j2",
+        "2.14.1",
+        "-",
+        "information",
+        "disclosure",
+        "edb-50592",
+        "50592",
+        "apache",
+        "log4j",
+        "2",
+        "-",
+        "remote",
+        "code",
+        "execution",
+        "rce",
+        "edb-51183",
+        "51183",
+        "ad",
+        "manager",
+        "plus",
+        "7122",
+        "-",
+        "remote",
+        "code",
+        "execution",
+        "rce",
+        "red",
+        "hat",
+        "log4j-core:",
+        "remote",
+        "code",
+        "execution",
+        "in",
+        "log4j",
+        "2.x",
+        "when",
+        "logs",
+        "contain",
+        "an",
+        "attacker-controlled",
+        "string",
+        "value"
+      ],
+      "embedding": [
+        0.046349,
+        0.119004,
+        0.041338,
+        0.025053,
+        0.022548,
+        0.01879,
+        0.086434,
+        0.096456,
+        0.010021,
+        0.035075,
+        0.03758,
+        0.028811,
+        0.006263,
+        0.040085,
+        0.058876,
+        0.025053,
+        0.026306,
+        0.010021,
+        0.057623,
+        0.022548,
+        0.025053,
+        0.042591,
+        0.0,
+        0.010021,
+        0.121509,
+        0.0,
+        0.0,
+        0.072655,
+        0.058876,
+        0.040085,
+        0.066392,
+        0.016285,
+        0.026306,
+        0.032569,
+        0.031317,
+        0.030064,
+        0.028811,
+        0.012527,
+        0.086434,
+        0.098961,
+        0.043844,
+        0.043844,
+        0.035075,
+        0.080171,
+        0.299389,
+        0.0,
+        0.07015,
+        0.030064,
+        0.010021,
+        0.072655,
+        0.061381,
+        0.025053,
+        0.020043,
+        0.010021,
+        0.131531,
+        0.077666,
+        0.055118,
+        0.068897,
+        0.031317,
+        0.042591,
+        0.063886,
+        0.0,
+        0.045096,
+        0.040085,
+        0.263061,
+        0.121509,
+        0.022548,
+        0.010021,
+        0.060128,
+        0.0,
+        0.006263,
+        0.100214,
+        0.066392,
+        0.006263,
+        0.01879,
+        0.125267,
+        0.028811,
+        0.046349,
+        0.060128,
+        0.01879,
+        0.025053,
+        0.063886,
+        0.05637,
+        0.012527,
+        0.035075,
+        0.035075,
+        0.022548,
+        0.026306,
+        0.127773,
+        0.066392,
+        0.097708,
+        0.022548,
+        0.020043,
+        0.040085,
+        0.010021,
+        0.016285,
+        0.066392,
+        0.006263,
+        0.010021,
+        0.07015,
+        0.026306,
+        0.058876,
+        0.073908,
+        0.068897,
+        0.020043,
+        0.028811,
+        0.01879,
+        0.020043,
+        0.016285,
+        0.03758,
+        0.038833,
+        0.046349,
+        0.006263,
+        0.01879,
+        0.03758,
+        0.035075,
+        0.07015,
+        0.016285,
+        0.028811,
+        0.038833,
+        0.155331,
+        0.110235,
+        0.0,
+        0.03758,
+        0.113993,
+        0.05637,
+        0.166605,
+        0.030064,
+        0.010021,
+        0.041338,
+        0.016285,
+        0.025053,
+        0.11274,
+        0.048854,
+        0.101466,
+        0.006263,
+        0.022548,
+        0.050107,
+        0.020043,
+        0.045096,
+        0.01879,
+        0.042591,
+        0.08894,
+        0.020043,
+        0.046349,
+        0.020043,
+        0.098961,
+        0.0,
+        0.136541,
+        0.052612,
+        0.0,
+        0.012527,
+        0.060128,
+        0.080171,
+        0.040085,
+        0.016285,
+        0.066392,
+        0.0,
+        0.080171,
+        0.006263,
+        0.010021,
+        0.140299,
+        0.028811,
+        0.060128,
+        0.08894,
+        0.096456,
+        0.022548,
+        0.016285,
+        0.016285,
+        0.020043,
+        0.087687,
+        0.105224,
+        0.045096,
+        0.065139,
+        0.091445,
+        0.036327,
+        0.01879,
+        0.152826,
+        0.040085,
+        0.095203,
+        0.139047,
+        0.016285,
+        0.117751,
+        0.055118,
+        0.0,
+        0.031317,
+        0.012527,
+        0.010021,
+        0.131531,
+        0.030064,
+        0.0,
+        0.010021,
+        0.010021,
+        0.052612,
+        0.025053,
+        0.11274,
+        0.072655,
+        0.048854,
+        0.016285,
+        0.030064,
+        0.07015,
+        0.068897,
+        0.045096,
+        0.045096,
+        0.016285,
+        0.053865,
+        0.068897,
+        0.016285,
+        0.006263,
+        0.03758,
+        0.0,
+        0.03758,
+        0.072655,
+        0.096456,
+        0.010021,
+        0.081424,
+        0.100214,
+        0.012527,
+        0.022548,
+        0.091445,
+        0.032569,
+        0.028811,
+        0.050107,
+        0.046349,
+        0.0,
+        0.048854,
+        0.045096,
+        0.061381,
+        0.066392,
+        0.010021,
+        0.080171,
+        0.055118,
+        0.025053,
+        0.077666,
+        0.006263,
+        0.025053,
+        0.012527,
+        0.020043,
+        0.025053,
+        0.028811,
+        0.05637,
+        0.080171,
+        0.016285,
+        0.036327,
+        0.006263,
+        0.060128,
+        0.022548,
+        0.062634,
+        0.026306,
+        0.0,
+        0.010021,
+        0.03758,
+        0.130278,
+        0.055118,
+        0.05136,
+        0.026306
+      ]
+    }
+  ]
+}

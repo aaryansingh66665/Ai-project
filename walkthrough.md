@@ -1,57 +1,155 @@
 # Walkthrough: CyberAgent X (Offline GPU Unrestricted Multi-Agent System)
 
-CyberAgent X is now fully implemented and verified. It is a 100% offline, NVIDIA GPU-accelerated multi-agent platform designed specifically for the **NVIDIA GeForce RTX 3050 (6GB VRAM)**, running local **Ollama** models with zero cloud dependencies, unrestricted search freedom, and zero content refusals.
+CyberAgent X is a 100% offline, NVIDIA GPU-accelerated multi-agent cybersecurity swarm platform designed specifically for the **NVIDIA GeForce RTX 3050 (6GB VRAM)**, running local **Ollama** models with dynamic VRAM swapping, zero content refusals, and multi-source threat intelligence correlation.
 
 ---
 
-## 🛠️ Architecture & Components Built
+## 🎯 1. Exploit, CVE & Metasploit Intelligence Radar
 
-```mermaid
-flowchart TD
-    subgraph UI ["User Interfaces"]
-        WEB["🌐 Modern Cyber Studio (React + Vite Web UI)"]
-        CLI["💻 Interactive Terminal CLI (Rich Console)"]
-    end
+A multi-source exploit and vulnerability search suite integrating:
+- **Metasploit Framework Integration**: Fast module discovery, Ruby header & ranking inspection, author attribution, CVE references, default port resolution, and automated `.rc` Resource Script generation for safe authorized lab verification.
+- **Exploit-DB Integration**: Instant lookup of weaponized public exploits, verified status, target platform tags, and raw exploit PoC code extractor (Python, C, Ruby).
+- **GitHub CVE PoC Repositories**: Real-time integration with the `nomi-sec/PoC-in-GitHub` database and GitHub Repositories Search API for public PoC implementations with live star counts and forks.
+- **GitHub Security Advisories (GHSA)**: Ecosystem vulnerability bulletins, affected package version ranges, and patched release tracking.
 
-    subgraph BACKEND ["FastAPI & WebSocket Core Server"]
-        ROUTER["API Router & Event Dispatcher"]
-        ORCH["👑 Master Orchestrator (DAG Generator)"]
-        BUS["⚡ Async Message Bus & Stream Manager"]
-        GPU_MON["📊 Live GPU & VRAM Monitor (NVML)"]
-    end
+```
+                  UNIFIED EXPLOIT RADAR
+                            │
+       ┌────────────────────┼────────────────────┐
+       ↓                    ↓                    ↓
+  METASPLOIT           EXPLOIT-DB           GITHUB POCS
+Modules & .RC gen    Public PoCs & code   nomi-sec & repos
+       │                    │                    │
+       └────────────────────┼────────────────────┘
+                            ↓
+               [RAW CODE / .RC SCRIPT VIEWER]
+```
 
-    subgraph TOOLS ["Unrestricted Tool & Search Engine"]
-        WEB_SRCH["🌐 Multi-Source Web Search (DDG / Crawl / Fallbacks)"]
-        LOCAL_RAG["📁 Offline Vector & BM25 Document Ingestor"]
-        CODE_EXEC["🐍 Local Python Code Sandbox & Shell Tool"]
-    end
+### Available Endpoints:
+- `POST /api/tools/exploits/find-all`: Unified 4-source parallel search across Metasploit, Exploit-DB, GitHub PoCs, and GHSA.
+- `POST /api/tools/metasploit/search`: Metasploit module search by CVE, product, or keyword.
+- `POST /api/tools/metasploit/details`: Inspect full Ruby source code, targets, and options.
+- `POST /api/tools/metasploit/generate-rc`: Generates automated msfconsole `.rc` resource scripts.
+- `POST /api/tools/exploitdb/search`: Exploit-DB search by CVE or keyword.
+- `GET /api/tools/exploitdb/code/{edb_id}`: Raw PoC download and viewer.
+- `POST /api/tools/github-pocs/search`: GitHub CVE PoC search.
 
-    subgraph AGENTS ["Specialized Multi-Agent Swarm"]
-        A1["👑 Master Orchestrator (qwen3:8b)"]
-        A2["🕵️ OSINT & Deep Search (qwen3:4b)"]
-        A3["🧠 Threat Intel & CoT (deepseek-r1:8b)"]
-        A4["💻 Offensive & Defensive Coder (qwen2.5-coder:7b)"]
-        A5["🔬 Malware & Reverse Eng (qwen3:8b)"]
-        A6["📡 Network & Protocol Analysis (gemma3:4b)"]
-        A7["📝 Executive Report Generator (gemma3:4b)"]
-        A8["⚔️ Red Team & CTF Simulator (phi4-mini:3.8b)"]
-    end
+---
 
-    subgraph INFERENCE ["Local NVIDIA GPU Engine (RTX 3050 6GB)"]
-        OLLAMA["🦙 Ollama Local Inference Engine (CUDA 13.2)"]
-        VRAM_MGR["⚖️ Dynamic VRAM Swapper & Model Lifecycle Manager"]
-    end
+## 🏛️ 2. Local Security Knowledge Base (KB) Architecture
 
-    UI --> BACKEND
-    BACKEND --> TOOLS
-    BACKEND --> AGENTS
-    AGENTS --> INFERENCE
-    TOOLS --> AGENTS
+```
+                    LOCAL SECURITY KB
+                           │
+        ┌──────────────────┼──────────────────┐
+        ↓                  ↓                  ↓
+      NVD/CVE            CISA KEV          OSV
+   CVE + CVSS/CPE      Exploited in wild   Packages
+        │                  │                  │
+        └──────────────────┼──────────────────┘
+                           ↓
+                     Exploit-DB
+                  Public exploit references
+                           │
+                           ↓
+                   GitHub Advisories
+                           │
+                           ↓
+                    Vendor Advisories (RedHat, Ubuntu, MSRC, Debian)
+                           │
+                           ↓
+                    Vector Database (Local Hybrid BM25 & Semantic Store)
+                           │
+                           ↓
+                    Ollama + Qwen (Local Neural Intelligence Synthesis)
+```
+
+| Layer | Engine Component | Data Streams & Functionality |
+|---|---|---|
+| **Layer 1** | **Tri-Feed Ingestion (Parallel)** | **NVD/CVE** (CVSS metrics, CPEs), **CISA KEV** (actively exploited in wild, ransomware use), **OSV** (PyPI, npm, Go, Rust, Maven open-source packages) |
+| **Layer 2** | **Exploit-DB Layer** | Public exploit references, PoC codes, EDB-IDs, verified weaponization flags |
+| **Layer 3** | **GitHub Advisories (GHSA)** | GitHub security advisories, affected ecosystem ranges, patched versions |
+| **Layer 4** | **Vendor Advisories** | **Red Hat Security Data API**, **Ubuntu CVE Tracker**, **MSRC**, **Debian Security Tracker** |
+| **Layer 5** | **Vector Database** | Local persistent Vector & BM25 hybrid index (`data/security_kb/index.json`) for sub-millisecond semantic retrieval |
+| **Layer 6** | **Ollama + Qwen** | Local neural synthesis via `qwen3:8b`, `qwen3:4b`, or `qwen2.5-coder:7b` for root-cause analysis, PoC generation & remediation code |
+
+---
+
+## 🏗️ 3. Multi-Agent DAG Execution Architecture
+
+```
+                    USER MISSION
+                         ↓
+                  ORCHESTRATOR
+                         ↓
+              ┌──────────┼──────────┐
+              ↓          ↓          ↓
+            OSINT    THREAT INTEL   RAG
+              │          │          │
+              └──────────┼──────────┘
+                         ↓
+                  EVIDENCE CORRELATOR
+                         ↓
+          ┌──────────────┼──────────────┐
+          ↓              ↓              ↓
+       NETWORK         MALWARE        CODING
+          │              │              │
+          └──────────────┼──────────────┘
+                         ↓
+                   VALIDATION
+                         ↓
+                     REPORT
+```
+
+* **Phase 1 (Intel Gathering)**: [OSINT, Threat Intel, RAG/Coder] gather external intelligence, footprints, and initial context.
+* **Evidence Correlator**: Synthesizes Phase 1 outputs and executes the 8-step vulnerability risk and enrichment engine.
+* **Phase 2 (Deep Specialist Analysis)**: [Network, Malware, Red Team] perform binary inspection, packet analysis, and tactical exploit mapping.
+* **Validation Engine**: Cross-verifies evidence across specialist agents and computes overall mission confidence ratings.
+* **Report Agent**: Synthesizes the executive and technical intelligence report deliverable.
+
+---
+
+## 🎯 4. 8-Stage Vulnerability Risk & Enrichment Pipeline
+
+```
+  [1] Nmap / Scan Ingestion
+          ↓
+  [2] Product + Version Normalization
+          ↓
+  [3] CPE 2.3 Generation & Validation
+          ↓
+  [4] Multi-Source CVE Matching (NVD, GHSA, Vulners, Rapid7, ExploitDB)
+          ↓
+  [5] CVSS v3.1 / v3.0 / v2.0 Scoring & Vector Extraction
+          ↓
+  [6] CISA KEV (Known Exploited Vulnerabilities) Verification
+          ↓
+  [7] Exploit Availability Assessment (ExploitDB, Metasploit, PoCs)
+          ↓
+  [8] Explainable Confidence Scoring (0-100% & Tier Rating)
 ```
 
 ---
 
-## 🤖 Multi-Agent Roster & Model Allocations
+## 📁 5. 10-Node Mission State Architecture (`mission/`)
+
+```
+mission/
+├── target              # Target domain, IP address, CIDR, or system identifier
+├── scope               # Authorized boundaries, port constraints, and test modes
+├── discovered_assets   # Active hosts, IPs, MAC addresses, and OS fingerprints
+├── services            # Open ports, protocols, detected products, and raw banners
+├── vulnerabilities     # 8-step enriched CVE records, CVSS scores, vectors, and remediations
+├── evidence            # Raw outputs, scan XMLs, tool executions, and artifact traces
+├── agent_results       # Specialist agent responses, thinking traces, and timings
+├── confidence          # Overall mission confidence score, rating, and validated checks
+├── decisions           # Tactical decisions, triage recommendations, and prioritization
+└── final_report        # Complete executive intelligence deliverable in Markdown
+```
+
+---
+
+## 🤖 6. Multi-Agent Roster & Model Allocations
 
 | # | Agent Role | Assigned Model | VRAM | Status | Specialty |
 |---|---|---|---|---|---|
@@ -66,52 +164,29 @@ flowchart TD
 
 ---
 
-## 🔍 Unrestricted Searching & Persona Design
-* **Zero Refusal Loops**: System prompts define an authorized cybersecurity lab persona that provides direct, objective, technical explanations without moral lectures or conversational avoidance loops.
-* **Limitless Multi-Engine Search**: Online searching via DuckDuckGo, Wikipedia, and raw HTTP crawlers with zero API keys or search blocks.
-* **Offline Document RAG**: Indexes PDF, TXT, JSON, MD, Python, C, and PCAP logs with local BM25 scoring.
-* **Local Code Sandbox**: Safe local execution of Python scripts, payload decoders, and hashing utilities.
+### ⚙️ 6.1 Model Sampling & Factual Accuracy Parameters
+
+To eliminate hallucination, prevent creative token branching, and enforce strict evidence adherence across all 8 agents (adhering to the 20 Evidence & CVE Rules), model inference parameters are configured as follows:
+
+| Parameter | Configured Value | Recommended Range | Reason & Operational Impact |
+|---|---|---|---|
+| `temperature` | `0.1` | `0.0 to 0.2` | Eliminates creative token branching on factual and analytical cybersecurity queries. |
+| `top_p` | `0.2` | `0.1 to 0.3` | Restricts token selection strictly to high-probability tokens. |
+| `repeat_penalty` | `1.15` | `1.1 to 1.2` | Prevents repetitive phrasing and reasoning loops in smaller models. |
+| `num_ctx` | `8192` | `4096 to 8192` | Prevents VRAM exhaustion on RTX 3050 (6GB) while retaining complete context windows. |
+| `num_gpu` | `99` | `99` | Offloads all model layers directly to NVIDIA Discrete GPU with CUDA. |
 
 ---
 
-## 📊 Verification & Test Results
+## 🚀 7. How to Run
 
-### 1. Hardware & Model Pre-flight Check (`python main.py --check`)
-- **GPU Device**: NVIDIA GeForce RTX 3050 6GB Laptop GPU (CUDA 13.2)
-- **VRAM Status**: 4964MB Free / 6144MB Total (19.2% used)
-- **GPU Temperature**: 44°C
-- **Ollama Status**: ONLINE at `http://localhost:11434`
-- **All 6 Local Models**: Verified and mapped to agents.
-
-### 2. Search Engine Verification
-- Successfully scraped and returned live CVE intelligence for `CVE-2021-44228` from NIST NVD, CISA, and CVE.org.
-
-### 3. FastAPI Backend & Web Studio Verification
-- REST endpoints (`/api/status`, `/api/search`, `/api/documents`, `/api/query`) tested and operational.
-- WebSocket `/ws/pipeline` streaming tokens, thinking traces, and GPU metrics in real-time.
-- React + Vite Web UI built to `web/dist` and served directly by FastAPI.
-
----
-
-## 🚀 How to Run CyberAgent X
-
-### Option 1: Quick Launch Menu
+### Quick Launch:
 ```powershell
 .\start.bat
 ```
 
-### Option 2: Launch Cyber Studio Web UI
+### Direct Python Execution:
 ```powershell
-python main.py --web
+python main.py --web --port 8000
 ```
-Open **`http://127.0.0.1:8000`** in your browser.
-
-### Option 3: Interactive Terminal CLI
-```powershell
-python main.py
-```
-
-### Option 4: Direct CLI Objective
-```powershell
-python main.py --query "Analyze CVE-2021-44228 exploit mechanics and generate Python PoC and Java patch"
-```
+Open **`http://localhost:8000`** in any web browser.

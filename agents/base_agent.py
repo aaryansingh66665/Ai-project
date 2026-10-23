@@ -16,6 +16,7 @@ from tools.search_engine import search_engine
 from tools.document_rag import document_rag
 from tools.code_sandbox import code_sandbox
 from tools.nmap_scanner import nmap_scanner
+from tools.threat_intel_fetcher import threat_intel_fetcher
 
 logger = logging.getLogger("CyberAgent.BaseAgent")
 
@@ -270,3 +271,15 @@ class BaseAgent:
             return nmap_scanner.parse_nmap_xml(file_content_or_path)
         return nmap_scanner.parse_nmap_text(file_content_or_path)
 
+    def query_threat_dbs(self, query: str, max_per_source: int = 5) -> str:
+        """Fan-out search across all 8 threat intelligence databases (NVD, CISA KEV, GitHub, ExploitDB, Vulners, Rapid7, Metasploit, Crawl4AI). Returns formatted context block."""
+        message_bus.emit_sync(
+            AgentEvent(
+                event_type="tool_call",
+                agent_id=self.agent_id,
+                agent_name=self.name,
+                payload={"tool": "query_threat_dbs", "query": query},
+            )
+        )
+        results = threat_intel_fetcher.search_all(query, max_per_source=max_per_source)
+        return threat_intel_fetcher.build_context_block(results)

@@ -18,13 +18,27 @@ from core.config import WORKSPACE_ROOT, AGENT_MODELS, DOCUMENTS_DIR
 from core.model_manager import model_manager
 from core.message_bus import message_bus, AgentEvent
 from core.pipeline import pipeline
+from core.mission_state import (
+    active_mission,
+    MissionState,
+    DiscoveredAsset,
+    ServiceRecord,
+    VulnerabilityRecord,
+    EvidenceItem,
+    DecisionItem,
+)
+from tools.vuln_correlator import vuln_correlator
 from tools.search_engine import search_engine
 from tools.document_rag import document_rag
 from tools.code_sandbox import code_sandbox
 from tools.nmap_scanner import nmap_scanner
+from tools.threat_intel_fetcher import threat_intel_fetcher
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("CyberAgent.Server")
+
+# Global pipeline abort flag
+_pipeline_stop_requested = False
 
 app = FastAPI(
     title="CyberAgent X - Local GPU Multi-Agent System",
@@ -41,7 +55,8 @@ app.add_middleware(
 )
 
 
-# Request & Response Schemas
+# ---------------- REQUEST MODELS ---------------- #
+
 class QueryRequest(BaseModel):
     query: str
     custom_agents: Optional[List[str]] = None
@@ -74,6 +89,352 @@ class NmapSwarmRequest(BaseModel):
     scan_data: Optional[Dict[str, Any]] = None
     custom_agents: Optional[List[str]] = None
 
+
+class ThreatIntelRequest(BaseModel):
+    query: str
+    max_per_source: Optional[int] = 5
+
+
+class CorrelateVulnsRequest(BaseModel):
+    target: Optional[str] = "127.0.0.1"
+    scan_data: Optional[Dict[str, Any]] = None
+    ports: Optional[List[Dict[str, Any]]] = None
+
+
+class SecurityKBQueryRequest(BaseModel):
+    query: str
+    model: Optional[str] = "qwen3:8b"
+
+
+class SecurityKBSearchRequest(BaseModel):
+    query: str
+    top_k: Optional[int] = 5
+    mode: Optional[str] = "hybrid"  # "hybrid" | "bm25" | "semantic"
+    alpha: Optional[float] = 0.5
+
+
+class RAGSearchRequest(BaseModel):
+    query: str
+    top_k: Optional[int] = 5
+    mode: Optional[str] = "hybrid"  # "hybrid" | "bm25" | "semantic"
+    alpha: Optional[float] = 0.5
+
+
+# ---------------- MISSION STATE & CORRELATION ENDPOINTS ---------------- #
+
+@app.get("/api/mission/current")
+async def get_current_mission():
+    """Returns the active mission state and full 10-node hierarchy."""
+    from core.mission_state import active_mission
+    return {
+        "mission": active_mission.to_dict()["mission"],
+        "summary": active_mission.to_tree_summary(),
+        "mission_id": active_mission.mission_id,
+        "created_at": active_mission.created_at,
+        "updated_at": active_mission.updated_at,
+    }
+
+
+@app.get("/api/mission/tree")
+async def get_mission_tree():
+    """Returns the 10-node directory tree summary of the current mission."""
+    from core.mission_state import active_mission
+    return active_mission.to_tree_summary()
+
+
+@app.post("/api/mission/correlate")
+async def correlate_vulnerabilities(req: CorrelateVulnsRequest):
+    """
+    Executes the complete 8-step vulnerability risk and enrichment pipeline:
+      [1] Nmap / Scan Ingestion
+      [2] Product + Version Normalization
+      [3] CPE 2.3 Generation & Validation
+      [4] Multi-Source CVE Matching
+      [5] CVSS Scoring & Vector Extraction
+      [6] CISA KEV Verification
+      [7] Exploit Availability (ExploitDB, Metasploit, PoCs)
+      [8] Explainable Confidence Scoring (0-100%)
+    """
+    from core.mission_state import active_mission
+    loop = asyncio.get_running_loop()
+    
+    input_data = req.ports if req.ports else (req.scan_data if req.scan_data else [{"ip": req.target, "port": 80, "service": "http"}])
+    result = await loop.run_in_executor(None, vuln_correlator.run_full_pipeline, input_data)
+    
+    for v in result.get("vulnerabilities", []):
+        rec = VulnerabilityRecord(**v)
+        active_mission.add_vulnerability(rec)
+    
+    for s in result.get("services", []):
+        srec = ServiceRecord(**s)
+        active_mission.add_service(srec)
+
+    message_bus.emit_sync(
+        AgentEvent(
+            event_type="mission_update",
+            agent_id="correlator",
+            agent_name="Evidence Correlator",
+            payload={
+                "phase": "8-Step Vulnerability Enrichment",
+                "mission_summary": active_mission.to_tree_summary(),
+                "enriched_count": len(result.get("vulnerabilities", [])),
+            },
+            step_index=0,
+            total_steps=1,
+        )
+    )
+
+    return result
+
+
+# ---------------- LOCAL SECURITY KB ENDPOINTS ---------------- #
+
+@app.get("/api/security-kb/status")
+async def get_security_kb_status():
+    """Returns Local Security KB statistics and indexed vector records."""
+    from tools.security_kb import local_security_kb
+    return {
+        "total_entries": len(local_security_kb.entries),
+        "storage_path": str(local_security_kb.storage_dir),
+        "layers": [
+            "NVD/CVE + CISA KEV + OSV",
+            "Exploit-DB",
+            "GitHub Advisories",
+            "Vendor Advisories (RedHat, Ubuntu, MSRC)",
+            "Vector Database (Local BM25 + Embeddings)",
+            "Ollama + Qwen (qwen3:8b / qwen3:4b / qwen2.5-coder)",
+        ],
+    }
+
+
+@app.post("/api/security-kb/search")
+async def search_security_kb(req: SecurityKBSearchRequest):
+    """Performs Dual-Engine Hybrid search (BM25 + Semantic Embeddings) over the Local Security KB Vector DB."""
+    from tools.security_kb import local_security_kb
+    loop = asyncio.get_running_loop()
+    matches = await loop.run_in_executor(
+        None,
+        local_security_kb.search_hybrid,
+        req.query,
+        req.top_k or 5,
+        req.mode or "hybrid",
+        req.alpha if req.alpha is not None else 0.5,
+    )
+    return {
+        "query": req.query,
+        "mode": req.mode or "hybrid",
+        "alpha": req.alpha if req.alpha is not None else 0.5,
+        "total_matches": len(matches),
+        "matches": matches,
+    }
+
+
+@app.post("/api/security-kb/ingest")
+async def ingest_to_security_kb(req: SecurityKBQueryRequest):
+    """Ingests a target vulnerability across the 4 threat layers into the local Vector DB."""
+    from tools.security_kb import local_security_kb
+    loop = asyncio.get_running_loop()
+    entry = await loop.run_in_executor(None, local_security_kb.ingest_to_vector_db, req.query)
+    return {"success": True, "entry": entry.to_dict()}
+
+
+@app.post("/api/security-kb/query")
+async def query_security_kb_with_llm(req: SecurityKBQueryRequest):
+    """
+    Executes the full 7-tier pipeline:
+      [1] Tri-Feed (NVD/CVE + CISA KEV + OSV)
+      [2] Exploit-DB
+      [3] GitHub Advisories
+      [4] Vendor Advisories
+      [5] Local Vector Database
+      [6] Neural Synthesis (NVIDIA Nemotron / Qwen)
+    """
+    from tools.security_kb import local_security_kb
+    loop = asyncio.get_running_loop()
+    result = await loop.run_in_executor(
+        None,
+        local_security_kb.query_with_llm,
+        req.query,
+        req.model or "nemotron-mini:4b",
+    )
+    return result
+
+
+@app.get("/api/models/nemotron")
+async def get_nemotron_info():
+    """Returns NVIDIA Nemotron AI family models, acceleration details, and available variants."""
+    from core.config import SUPPORTED_NEMOTRON_MODELS, AGENT_MODELS
+    from core.model_manager import model_manager
+    installed = model_manager.list_installed_models()
+    installed_names = [m.get("name", "") for m in installed]
+    nemotron_installed = [m for m in installed_names if "nemotron" in m.lower()]
+    
+    return {
+        "engine": "NVIDIA Nemotron AI",
+        "family": "NVIDIA Open Reasoning & Threat Modeling Models",
+        "default_model": AGENT_MODELS.get("nemotron", "nemotron-mini:4b"),
+        "supported_models": SUPPORTED_NEMOTRON_MODELS,
+        "installed_nemotron_models": nemotron_installed,
+        "hardware_acceleration": "NVIDIA CUDA / Tensor Core Accelerated",
+        "capabilities": [
+            "Hardware-accelerated analytical reasoning",
+            "Multi-step threat modeling & attack tree decomposition",
+            "Deterministic CVSS metrics validation",
+            "Zero-hallucination exploit evaluation",
+            "Code-level remediation synthesis",
+        ],
+    }
+
+
+@app.post("/api/nemotron/query")
+async def query_with_nemotron_ai(req: SecurityKBQueryRequest):
+    """Executes full threat modeling and remediation synthesis using NVIDIA Nemotron AI."""
+    from tools.security_kb import local_security_kb
+    target_model = req.model if (req.model and "nemotron" in req.model) else "nemotron-mini:4b"
+    loop = asyncio.get_running_loop()
+    result = await loop.run_in_executor(
+        None,
+        local_security_kb.query_with_nemotron,
+        req.query,
+        target_model,
+    )
+    return result
+
+
+# ---------------- METASPLOIT & EXPLOIT FINDER MODELS ---------------- #
+
+class MetasploitSearchRequest(BaseModel):
+    query: str
+    max_results: Optional[int] = 6
+
+
+class MetasploitDetailsRequest(BaseModel):
+    module_path_or_url: str
+
+
+class MetasploitGenerateRCRequest(BaseModel):
+    module_fullname: str
+    rhosts: Optional[str] = "127.0.0.1"
+    rport: Optional[int] = None
+    lhost: Optional[str] = "127.0.0.1"
+    lport: Optional[int] = 4444
+    payload: Optional[str] = None
+    extra_options: Optional[Dict[str, str]] = None
+
+
+class ExploitDBSearchRequest(BaseModel):
+    query: str
+    max_results: Optional[int] = 8
+
+
+class GitHubPoCSearchRequest(BaseModel):
+    query: str
+    max_results: Optional[int] = 8
+
+
+class GitHubPoCReadmeRequest(BaseModel):
+    repo_full_name: str
+
+
+class UnifiedExploitSearchRequest(BaseModel):
+    query: str
+
+
+# ---------------- METASPLOIT, EXPLOIT-DB & GITHUB POC ENDPOINTS ---------------- #
+
+@app.post("/api/tools/metasploit/search")
+async def search_metasploit_modules(req: MetasploitSearchRequest):
+    """Searches Metasploit Framework modules across canonical catalog, Rapid7, and GitHub."""
+    from tools.exploit_finder import exploit_finder
+    loop = asyncio.get_running_loop()
+    modules = await loop.run_in_executor(None, exploit_finder.search_metasploit, req.query, req.max_results or 6)
+    return {"query": req.query, "total": len(modules), "modules": [m.to_dict() for m in modules]}
+
+
+@app.post("/api/tools/metasploit/details")
+async def get_metasploit_module_details(req: MetasploitDetailsRequest):
+    """Fetches full Ruby source code, targets, options, and metadata for a Metasploit module."""
+    from tools.exploit_finder import exploit_finder
+    loop = asyncio.get_running_loop()
+    details = await loop.run_in_executor(None, exploit_finder.get_metasploit_module_details, req.module_path_or_url)
+    if not details:
+        raise HTTPException(status_code=404, detail="Metasploit module not found or source unreachable")
+    return details.to_dict()
+
+
+@app.post("/api/tools/metasploit/generate-rc")
+async def generate_metasploit_rc_script(req: MetasploitGenerateRCRequest):
+    """Generates an automated Metasploit Resource Script (.rc) for safe lab verification."""
+    from tools.exploit_finder import exploit_finder
+    rc_script = exploit_finder.generate_msf_resource_script(
+        module_fullname=req.module_fullname,
+        rhosts=req.rhosts or "127.0.0.1",
+        rport=req.rport,
+        lhost=req.lhost or "127.0.0.1",
+        lport=req.lport or 4444,
+        payload=req.payload,
+        extra_options=req.extra_options,
+    )
+    return {
+        "module_fullname": req.module_fullname,
+        "rc_script": rc_script,
+        "filename": f"{req.module_fullname.split('/')[-1]}.rc",
+    }
+
+
+@app.post("/api/tools/exploitdb/search")
+async def search_exploitdb_entries(req: ExploitDBSearchRequest):
+    """Searches Exploit-DB for weaponized exploits, platforms, and EDB-IDs."""
+    from tools.exploit_finder import exploit_finder
+    loop = asyncio.get_running_loop()
+    entries = await loop.run_in_executor(None, exploit_finder.search_exploitdb, req.query, req.max_results or 8)
+    return {"query": req.query, "total": len(entries), "entries": [e.to_dict() for e in entries]}
+
+
+@app.get("/api/tools/exploitdb/code/{edb_id}")
+async def get_exploitdb_raw_code(edb_id: str):
+    """Downloads the raw exploit PoC / C / Python code from Exploit-DB."""
+    from tools.exploit_finder import exploit_finder
+    loop = asyncio.get_running_loop()
+    raw_code = await loop.run_in_executor(None, exploit_finder.get_exploitdb_raw_code, edb_id)
+    if not raw_code:
+        raise HTTPException(status_code=404, detail=f"Exploit code for EDB-{edb_id} not found")
+    return {"edb_id": edb_id, "raw_code": raw_code, "length": len(raw_code)}
+
+
+@app.post("/api/tools/github-pocs/search")
+async def search_github_cve_pocs(req: GitHubPoCSearchRequest):
+    """Searches GitHub for public CVE PoC repositories and exploit implementations."""
+    from tools.exploit_finder import exploit_finder
+    loop = asyncio.get_running_loop()
+    pocs = await loop.run_in_executor(None, exploit_finder.search_github_cve_pocs, req.query, req.max_results or 8)
+    return {"query": req.query, "total": len(pocs), "pocs": [p.to_dict() for p in pocs]}
+
+
+@app.post("/api/tools/github-pocs/readme")
+async def get_github_poc_readme(req: GitHubPoCReadmeRequest):
+    """Fetches the README or primary documentation of a GitHub PoC repository."""
+    from tools.exploit_finder import exploit_finder
+    loop = asyncio.get_running_loop()
+    readme = await loop.run_in_executor(None, exploit_finder.get_github_poc_readme, req.repo_full_name)
+    if not readme:
+        raise HTTPException(status_code=404, detail="README not found")
+    return {"repo_full_name": req.repo_full_name, "readme": readme}
+
+
+@app.post("/api/tools/exploits/find-all")
+async def find_all_exploits_and_vulns(req: UnifiedExploitSearchRequest):
+    """
+    Unified multi-source search across:
+      [1] Metasploit Framework Modules
+      [2] Exploit-DB Public Codes
+      [3] GitHub CVE PoC Repositories
+      [4] GitHub Security Advisories (GHSA)
+    """
+    from tools.exploit_finder import exploit_finder
+    loop = asyncio.get_running_loop()
+    results = await loop.run_in_executor(None, exploit_finder.find_all_exploits_and_vulns, req.query)
+    return results
 
 
 # ---------------- REST ENDPOINTS ---------------- #
@@ -137,10 +498,18 @@ async def get_agent_roster():
 @app.post("/api/query")
 async def execute_query(req: QueryRequest, background_tasks: BackgroundTasks):
     """Trigger multi-agent swarm pipeline execution."""
+    pipeline.stop_requested = False
     loop = asyncio.get_running_loop()
-    # Run pipeline in background executor to prevent blocking async event loop
     result = await loop.run_in_executor(None, pipeline.execute, req.query, req.custom_agents)
     return result
+
+
+@app.post("/api/pipeline/stop")
+async def stop_pipeline():
+    """Signal the running pipeline to abort after the current agent stage."""
+    pipeline.request_stop()
+    logger.info("Pipeline stop requested via API.")
+    return {"success": True, "message": "Stop signal sent. Current agent will finish then pipeline halts."}
 
 
 @app.post("/api/search")
@@ -148,6 +517,36 @@ async def search_endpoint(req: SearchRequest):
     """Direct unrestricted multi-source search."""
     results = search_engine.search(req.query, max_results=req.max_results or 6)
     return {"query": req.query, "count": len(results), "results": results}
+
+
+@app.post("/api/threat-intel/search")
+async def threat_intel_search(req: ThreatIntelRequest):
+    """
+    Fan-out search across all 8 threat intelligence databases:
+    NVD, CISA KEV, GitHub Advisory, ExploitDB, Vulners, Rapid7, Metasploit, Crawl4AI.
+    Returns severity-sorted, deduplicated results.
+    """
+    loop = asyncio.get_running_loop()
+    results = await loop.run_in_executor(
+        None,
+        threat_intel_fetcher.search_all,
+        req.query,
+        req.max_per_source or 5,
+    )
+    return {
+        "query": req.query,
+        "total": len(results),
+        "sources_queried": ["NVD", "CISA_KEV", "GitHub_Advisory", "ExploitDB", "Vulners", "Rapid7", "Metasploit"],
+        "results": [r.to_dict() for r in results],
+    }
+
+
+@app.get("/api/threat-intel/cisa-kev")
+async def get_cisa_kev():
+    """Return the full CISA Known Exploited Vulnerabilities feed (cached 1h)."""
+    loop = asyncio.get_running_loop()
+    feed = await loop.run_in_executor(None, threat_intel_fetcher._get_cisa_kev_feed)
+    return {"total": len(feed), "vulnerabilities": feed}
 
 
 @app.get("/api/documents")
@@ -176,6 +575,27 @@ async def upload_document(file: UploadFile = File(...)):
         return {"success": True, "filename": file.filename, "chunks": chunks_count}
     except Exception as e:
         return JSONResponse(status_code=500, content={"success": False, "error": str(e)})
+
+
+@app.post("/api/documents/search")
+async def search_documents(req: RAGSearchRequest):
+    """Performs Dual-Engine Hybrid search (BM25 + Semantic Embeddings) over indexed documents."""
+    loop = asyncio.get_running_loop()
+    results = await loop.run_in_executor(
+        None,
+        document_rag.search_hybrid,
+        req.query,
+        req.top_k or 5,
+        req.mode or "hybrid",
+        req.alpha if req.alpha is not None else 0.5,
+    )
+    return {
+        "query": req.query,
+        "mode": req.mode or "hybrid",
+        "alpha": req.alpha if req.alpha is not None else 0.5,
+        "total_matches": len(results),
+        "results": results,
+    }
 
 
 @app.post("/api/execute-code")
@@ -336,6 +756,8 @@ async def websocket_pipeline(websocket: WebSocket):
             await websocket.send_json(event.to_dict())
     except WebSocketDisconnect:
         logger.info("WebSocket client disconnected")
+    except asyncio.CancelledError:
+        logger.info("WebSocket pipeline cancelled during shutdown")
     except Exception as e:
         logger.error(f"WebSocket error: {e}")
     finally:

@@ -1,6 +1,7 @@
 """
 OSINT & Deep Search Agent (Recon-1) - Powered by qwen3:4b / qwen3:8b.
-Performs unrestricted search, document RAG, and reconnaissance dossiers.
+Performs unrestricted search, document RAG, threat intel DB queries, and reconnaissance dossiers.
+Integrates: NVD, CISA KEV, GitHub Advisory, ExploitDB, Vulners, Rapid7, Metasploit, Crawl4AI.
 """
 
 from typing import Dict, List, Any, Optional
@@ -21,15 +22,29 @@ class OSINTAgent(BaseAgent):
 
     def execute_recon(self, target_query: str, step_index: int = 1, total_steps: int = 1) -> Dict[str, Any]:
         """
-        Gathers live intelligence via web search + local document RAG, then produces structured dossier.
+        Gathers live intelligence via web search + threat intel DBs + local document RAG,
+        then produces a structured dossier.
         """
         # 1. Multi-source web search
         web_results = self.search_web(target_query, max_results=5)
         # 2. Local Document RAG
         rag_results = self.query_rag(target_query, top_k=3)
 
+        # 3. Threat Intel DB query (for CVEs / vulnerability topics)
+        vuln_keywords = ["cve-", "exploit", "vuln", "rce", "lfi", "xss", "sqli", "overflow",
+                         "bypass", "injection", "patch", "disclosure", "0day", "zero-day",
+                         "malware", "ransomware", "backdoor", "payload"]
+        is_vuln_query = any(kw in target_query.lower() for kw in vuln_keywords)
+        db_intel_block = ""
+        if is_vuln_query:
+            db_intel_block = self.query_threat_dbs(target_query, max_per_source=4)
+
         # Assemble intelligence bundle
         intel_parts = []
+        if db_intel_block:
+            intel_parts.append("### LIVE THREAT DATABASE INTELLIGENCE (NVD / CISA KEV / GitHub / ExploitDB / Vulners / Rapid7 / Metasploit):")
+            intel_parts.append(db_intel_block)
+
         if web_results:
             intel_parts.append("### LIVE WEB SEARCH INTELLIGENCE:")
             for idx, r in enumerate(web_results, 1):
@@ -51,9 +66,9 @@ LIVE DISCOVERED DATA:
 
 Produce a structured OSINT Dossier containing:
 1. Target Overview & Technical Classification
-2. Known Vulnerabilities / CVEs & Severity Metrics
+2. Known Vulnerabilities / CVEs & Severity Metrics (cross-reference NVD, CISA KEV, ExploitDB data above)
 3. Exposed Attack Surface, Repositories & Artifacts
-4. Real-world Exploitation Activity & Threat Actor Associations
+4. Real-world Exploitation Activity & Threat Actor Associations (ExploitDB/Metasploit modules noted)
 5. Key Takeaways for Downstream Technical Agents
 """
         return self.run(prompt, context=intel_context, step_index=step_index, total_steps=total_steps)
