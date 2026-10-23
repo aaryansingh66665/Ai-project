@@ -15,19 +15,40 @@ import {
   Server,
   Lock,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  Shield,
+  Flame,
+  Bug,
+  Crosshair,
+  Award,
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
+
+const ENRICHMENT_STEPS = [
+  { step: '1', name: 'Nmap Scan', desc: 'Port & Service Discovery', color: 'var(--p-blue)' },
+  { step: '2', name: 'Product + Version', desc: 'Banner & String Normalization', color: 'var(--p-cyan)' },
+  { step: '3', name: 'CPE 2.3', desc: 'Standard NIST Platform IDs', color: 'var(--p-purple)' },
+  { step: '4', name: 'CVE Matching', desc: 'NVD, Vulners, GHSA Feeds', color: 'var(--p-amber)' },
+  { step: '5', name: 'CVSS Scoring', desc: 'v3.1 Base Metric & Vectors', color: 'var(--p-red)' },
+  { step: '6', name: 'CISA KEV', desc: 'Actively Exploited Catalog', color: '#ff0055' },
+  { step: '7', name: 'Exploit Availability', desc: 'ExploitDB & Metasploit Modules', color: '#ff5500' },
+  { step: '8', name: 'Confidence Score', desc: '0-100% Explainable Rating', color: 'var(--p-green)' },
+];
 
 export default function NmapScannerHub({ onSendToSwarm }) {
   const [target, setTarget] = useState('127.0.0.1');
   const [profile, setProfile] = useState('standard');
   const [customArgs, setCustomArgs] = useState('-sV -sC -T4');
   const [isScanning, setIsScanning] = useState(false);
+  const [isEnriching, setIsEnriching] = useState(false);
   const [statusInfo, setStatusInfo] = useState(null);
   const [scanResult, setScanResult] = useState(null);
+  const [enrichmentResult, setEnrichmentResult] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(null);
   const [expandedScripts, setExpandedScripts] = useState({});
+  const [expandedBreakdown, setExpandedBreakdown] = useState({});
   const [swarmTriggering, setSwarmTriggering] = useState(false);
 
   // Fetch Nmap binary status
@@ -54,6 +75,7 @@ export default function NmapScannerHub({ onSendToSwarm }) {
     setIsScanning(true);
     setErrorMessage(null);
     setScanResult(null);
+    setEnrichmentResult(null);
 
     try {
       const res = await fetch('/api/tools/nmap/scan', {
@@ -70,6 +92,8 @@ export default function NmapScannerHub({ onSendToSwarm }) {
       const data = await res.json();
       if (data.success) {
         setScanResult(data);
+        // Automatically trigger 8-step correlation
+        run8StepEnrichment(data);
       } else {
         setErrorMessage(data.error || 'Nmap scan encountered an issue.');
       }
@@ -86,6 +110,7 @@ export default function NmapScannerHub({ onSendToSwarm }) {
 
     setUploadStatus('Parsing Nmap scan file...');
     setErrorMessage(null);
+    setEnrichmentResult(null);
 
     const formData = new FormData();
     formData.append('file', file);
@@ -100,6 +125,8 @@ export default function NmapScannerHub({ onSendToSwarm }) {
       if (data.success) {
         setScanResult(data);
         setUploadStatus(`✔ Successfully parsed '${data.filename}' (${data.open_ports_count} open ports found)`);
+        // Trigger 8-step correlation
+        run8StepEnrichment(data);
       } else {
         setErrorMessage(`Upload parsing failed: ${data.error}`);
         setUploadStatus(null);
@@ -110,10 +137,43 @@ export default function NmapScannerHub({ onSendToSwarm }) {
     }
   };
 
+  const run8StepEnrichment = async (scanDataToUse) => {
+    const data = scanDataToUse || scanResult;
+    if (!data) return;
+
+    setIsEnriching(true);
+    try {
+      const res = await fetch('/api/mission/correlate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          target: data.target || target,
+          scan_data: data,
+        }),
+      });
+
+      if (res.ok) {
+        const enriched = await res.json();
+        setEnrichmentResult(enriched);
+      }
+    } catch (err) {
+      console.error('8-step enrichment failed:', err);
+    } finally {
+      setIsEnriching(false);
+    }
+  };
+
   const toggleScriptExpand = (key) => {
     setExpandedScripts(prev => ({
       ...prev,
       [key]: !prev[key]
+    }));
+  };
+
+  const toggleBreakdown = (cveId) => {
+    setExpandedBreakdown(prev => ({
+      ...prev,
+      [cveId]: !prev[cveId]
     }));
   };
 
@@ -127,125 +187,129 @@ export default function NmapScannerHub({ onSendToSwarm }) {
         body: JSON.stringify({
           target: scanResult.target || target,
           scan_data: scanResult,
-          custom_agents: ['network', 'threat_intel', 'coder', 'redteam', 'report']
-        })
+        }),
       });
-      const data = await res.json();
+
       if (onSendToSwarm) {
-        onSendToSwarm(data);
+        onSendToSwarm();
       }
     } catch (err) {
-      console.error('Swarm audit trigger failed:', err);
+      console.error('Failed to trigger swarm audit:', err);
     } finally {
       setSwarmTriggering(false);
     }
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       
-      {/* Header Banner & Status Bar */}
-      <div className="glass-panel" style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <div style={{ background: 'linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(0, 255, 136, 0.2))', padding: '10px', borderRadius: '10px', border: '1px solid var(--border-glow)' }}>
-            <Radar size={28} color="var(--neon-cyan)" />
+      {/* ── 8-STEP ENRICHMENT CHAIN BANNER ────────────────────────────────────────── */}
+      <div className="glass-panel" style={{ padding: '20px 24px', background: 'radial-gradient(ellipse at center, rgba(0,30,60,0.4) 0%, rgba(0,5,15,0.85) 100%)', borderColor: 'var(--p-blue)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', flexWrap: 'wrap', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Crosshair size={18} color="var(--p-cyan)" />
+            <div>
+              <div style={{ fontFamily: 'Orbitron,monospace', fontWeight: 800, fontSize: '0.82rem', letterSpacing: '2px', color: 'var(--p-cyan)', textTransform: 'uppercase' }}>
+                8-Stage Vulnerability Risk & Enrichment Pipeline
+              </div>
+              <div style={{ fontFamily: 'Share Tech Mono,monospace', fontSize: '0.68rem', color: 'rgba(0,200,248,0.7)', marginTop: '2px' }}>
+                Nmap Ingestion → CPE Normalization → Threat Intel Correlation → CISA KEV & Exploit Validation → Confidence Scoring
+              </div>
+            </div>
           </div>
-          <div>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: '800', background: 'linear-gradient(90deg, #00e5ff, #00ff88)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              NMAP NETWORK RECONNAISSANCE HUB
-            </h2>
-            <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-              Live host discovery, service versioning, NSE script auditing & multi-agent vulnerability assessment
-            </p>
-          </div>
+
+          {scanResult && (
+            <button
+              onClick={() => run8StepEnrichment()}
+              disabled={isEnriching}
+              className="cyber-btn"
+              style={{ padding: '6px 14px', fontSize: '0.72rem' }}
+            >
+              {isEnriching ? <RefreshCw size={12} className="animate-spin" /> : <Sparkles size={12} />}
+              {isEnriching ? 'ENRICHING...' : 'RE-RUN 8-STEP ENRICHMENT'}
+            </button>
+          )}
         </div>
 
-        {/* Nmap Status Badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          {statusInfo?.available ? (
-            <div className="badge-neon badge-green" style={{ fontSize: '0.8rem', padding: '6px 12px' }}>
-              <CheckCircle size={14} />
-              <span>NMAP BINARY DETECTED</span>
+        {/* The 8 Step Flow Display */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px', marginTop: '10px' }}>
+          {ENRICHMENT_STEPS.map((s, idx) => (
+            <div key={s.step} style={{
+              background: 'rgba(0,200,248,0.03)',
+              border: `1px solid ${s.color}40`,
+              padding: '10px 12px',
+              position: 'relative',
+              clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+                <span style={{ fontFamily: 'Orbitron,monospace', fontSize: '0.6rem', color: s.color, fontWeight: 800 }}>STEP 0{s.step}</span>
+                <div style={{ width: 6, height: 6, borderRadius: '50%', background: s.color, boxShadow: `0 0 8px ${s.color}` }} />
+              </div>
+              <div style={{ fontFamily: 'Orbitron,monospace', fontSize: '0.68rem', fontWeight: 700, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {s.name}
+              </div>
+              <div style={{ fontFamily: 'Share Tech Mono,monospace', fontSize: '0.58rem', color: 'rgba(255,255,255,0.5)', marginTop: '2px', lineHeight: 1.2 }}>
+                {s.desc}
+              </div>
             </div>
-          ) : (
-            <div className="badge-neon badge-amber" style={{ fontSize: '0.8rem', padding: '6px 12px' }}>
-              <AlertTriangle size={14} />
-              <span>OFFLINE LOG MODE ACTIVE</span>
-            </div>
-          )}
-          <button 
-            onClick={checkNmapStatus}
-            style={{ background: 'transparent', border: '1px solid var(--border-dim)', color: 'var(--text-secondary)', padding: '6px', borderRadius: '6px', cursor: 'pointer' }}
-            title="Refresh Nmap binary status"
-          >
-            <RefreshCw size={14} />
-          </button>
+          ))}
         </div>
       </div>
 
-      {/* Main 2-Column Grid: Scanner Form & Offline Ingestion */}
+      {/* Control Grid: Scan Config & Offline Upload */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '20px' }}>
         
-        {/* Live Scan Control Box */}
-        <div className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid var(--border-dim)', paddingBottom: '12px' }}>
-            <Server size={18} color="var(--neon-cyan)" />
-            <h3 style={{ fontSize: '1rem', fontWeight: '700' }}>Live Target Scanner</h3>
+        {/* Live Network Scanner */}
+        <div className="glass-panel" style={{ padding: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--border-dim)', paddingBottom: '12px', marginBottom: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Radar size={20} color="var(--neon-cyan)" />
+              <h3 style={{ fontSize: '1rem', fontWeight: '700' }}>Live Network Reconnaissance</h3>
+            </div>
+            {statusInfo && (
+              <span className={`badge-neon ${statusInfo.available ? 'badge-green' : 'badge-red'}`} style={{ fontSize: '0.7rem' }}>
+                {statusInfo.available ? 'NMAP ONLINE' : 'NMAP OFFLINE'}
+              </span>
+            )}
           </div>
 
           <form onSubmit={handleScan} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                Target IP, Subnet or Hostname
+              <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '6px' }}>
+                TARGET IP / CIDR / HOSTNAME
               </label>
               <input
                 type="text"
                 className="cyber-input"
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
-                placeholder="e.g. 192.168.1.1, 10.0.0.0/24, scanme.nmap.org"
+                placeholder="192.168.1.1 or 10.0.0.0/24 or example.com"
                 required
               />
             </div>
 
             <div>
-              <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                Scan Profile & Techniques
+              <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '6px' }}>
+                SCAN PROFILE PRESET
               </label>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
-                {[
-                  { id: 'quick', label: '⚡ Fast Discovery (-F -sV)' },
-                  { id: 'standard', label: '🛡️ Service Audit (-sV -sC)' },
-                  { id: 'vuln', label: '🔥 Vuln NSE Scripts' },
-                  { id: 'custom', label: '⚙️ Custom Flags' },
-                ].map((p) => (
-                  <button
-                    key={p.id}
-                    type="button"
-                    onClick={() => setProfile(p.id)}
-                    style={{
-                      padding: '8px 10px',
-                      borderRadius: '6px',
-                      border: profile === p.id ? '1px solid var(--neon-cyan)' : '1px solid var(--border-dim)',
-                      background: profile === p.id ? 'rgba(0, 229, 255, 0.15)' : 'var(--bg-secondary)',
-                      color: profile === p.id ? 'var(--neon-cyan)' : 'var(--text-secondary)',
-                      fontSize: '0.75rem',
-                      fontWeight: profile === p.id ? '600' : '400',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      transition: 'all 0.15s ease',
-                    }}
-                  >
-                    {p.label}
-                  </button>
-                ))}
-              </div>
+              <select
+                className="cyber-input"
+                value={profile}
+                onChange={(e) => setProfile(e.target.value)}
+                style={{ cursor: 'pointer' }}
+              >
+                <option value="quick">Quick Port Scan (-sV -T4 -F)</option>
+                <option value="standard">Standard Service Recon (-sV -sC -T4)</option>
+                <option value="vuln">Vulnerability Audit (-sV --script=vulners,vuln)</option>
+                <option value="full">Full Port Sweep (-sV -sC -p- -T4)</option>
+                <option value="custom">Custom Parameters</option>
+              </select>
             </div>
 
             {profile === 'custom' && (
               <div>
                 <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '6px' }}>
-                  Custom Command Arguments
+                  CUSTOM CLI ARGUMENTS
                 </label>
                 <input
                   type="text"
@@ -271,14 +335,14 @@ export default function NmapScannerHub({ onSendToSwarm }) {
               ) : (
                 <>
                   <Play size={16} />
-                  <span>Execute Nmap Recon</span>
+                  <span>Execute Nmap Recon & 8-Step Audit</span>
                 </>
               )}
             </button>
           </form>
         </div>
 
-        {/* Offline Log Ingestion & Host Installation Info */}
+        {/* Offline Log Ingestion */}
         <div className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '16px' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid var(--border-dim)', paddingBottom: '12px', marginBottom: '14px' }}>
@@ -287,7 +351,7 @@ export default function NmapScannerHub({ onSendToSwarm }) {
             </div>
             
             <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '14px' }}>
-              Upload pre-existing Nmap scan logs (<code>.xml</code> or <code>.nmap</code> plaintext) for immediate agent extraction and CVE correlation.
+              Upload pre-existing Nmap scan logs (<code>.xml</code> or <code>.nmap</code> plaintext) for immediate 8-step CVE correlation and AI swarm auditing.
             </p>
 
             <label style={{
@@ -318,7 +382,6 @@ export default function NmapScannerHub({ onSendToSwarm }) {
             </label>
           </div>
 
-          {/* Helper Tips */}
           <div style={{ background: 'var(--bg-secondary)', padding: '12px', borderRadius: '8px', border: '1px solid var(--border-dim)', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--neon-cyan)', marginBottom: '4px', fontWeight: '600' }}>
               <Terminal size={14} />
@@ -347,6 +410,159 @@ export default function NmapScannerHub({ onSendToSwarm }) {
         </div>
       )}
 
+      {/* ── 8-STEP CORRELATED VULNERABILITIES RESULT CARDS ────────────────────────── */}
+      {enrichmentResult && enrichmentResult.vulnerabilities && enrichmentResult.vulnerabilities.length > 0 && (
+        <div className="glass-panel" style={{ padding: '24px', borderColor: 'var(--p-purple)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px', flexWrap: 'wrap', gap: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Shield size={22} color="var(--p-purple)" />
+              <div>
+                <h3 style={{ fontFamily: 'Orbitron,monospace', fontSize: '1.05rem', fontWeight: 800, color: 'var(--p-purple)' }}>
+                  Correlated Vulnerabilities ({enrichmentResult.vulnerabilities.length} Found)
+                </h3>
+                <p style={{ fontFamily: 'Share Tech Mono,monospace', fontSize: '0.72rem', color: 'rgba(0,200,248,0.7)', marginTop: '2px' }}>
+                  Enrichment completed in {enrichmentResult.duration_s}s across {enrichmentResult.total_services} service(s)
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={triggerSwarmAudit}
+              disabled={swarmTriggering}
+              className="cyber-btn"
+              style={{ background: 'linear-gradient(135deg, rgba(181, 23, 158, 0.4), rgba(0, 229, 255, 0.3))', borderColor: 'var(--neon-purple)', color: '#fff' }}
+            >
+              <Zap size={14} color="var(--neon-cyan)" />
+              <span>{swarmTriggering ? 'Disseminating...' : 'Analyze with Multi-Agent Swarm'}</span>
+            </button>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            {enrichmentResult.vulnerabilities.map((v, idx) => {
+              const isKev = v.is_cisa_kev;
+              const hasExploit = v.exploit_available;
+              const confPct = v.confidence_score || 0;
+              const isExpanded = expandedBreakdown[v.cve_id];
+
+              return (
+                <div key={idx} style={{
+                  background: 'rgba(0,10,25,0.6)',
+                  border: `1px solid ${isKev ? '#ff0055' : v.cvss_score >= 9.0 ? 'var(--p-red)' : 'rgba(0,200,248,0.2)'}`,
+                  padding: '16px 20px',
+                  position: 'relative'
+                }}>
+                  {/* Top Bar */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', marginBottom: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <span style={{ fontFamily: 'Orbitron,monospace', fontWeight: 800, fontSize: '0.9rem', color: 'var(--p-cyan)' }}>
+                        {v.cve_id}
+                      </span>
+                      {v.port && (
+                        <span style={{ fontFamily: 'Share Tech Mono,monospace', fontSize: '0.68rem', color: 'var(--p-blue)', background: 'rgba(0,200,248,0.1)', padding: '2px 6px', border: '1px solid rgba(0,200,248,0.3)' }}>
+                          PORT {v.port}
+                        </span>
+                      )}
+                      {v.cvss_score && (
+                        <span style={{
+                          fontFamily: 'Orbitron,monospace',
+                          fontSize: '0.68rem',
+                          fontWeight: 800,
+                          padding: '2px 8px',
+                          background: v.cvss_score >= 9.0 ? 'rgba(255,30,60,0.2)' : v.cvss_score >= 7.0 ? 'rgba(255,140,0,0.2)' : 'rgba(0,200,248,0.2)',
+                          color: v.cvss_score >= 9.0 ? 'var(--p-red)' : v.cvss_score >= 7.0 ? 'var(--p-amber)' : 'var(--p-blue)',
+                          border: `1px solid ${v.cvss_score >= 9.0 ? 'var(--p-red)' : v.cvss_score >= 7.0 ? 'var(--p-amber)' : 'var(--p-blue)'}`,
+                        }}>
+                          CVSS {v.cvss_score} // {v.cvss_severity}
+                        </span>
+                      )}
+                      {isKev && (
+                        <span style={{
+                          fontFamily: 'Orbitron,monospace',
+                          fontSize: '0.65rem',
+                          fontWeight: 800,
+                          background: 'rgba(255,0,85,0.25)',
+                          color: '#ff0055',
+                          border: '1px solid #ff0055',
+                          padding: '2px 8px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          animation: 'phud 1.5s infinite'
+                        }}>
+                          <Flame size={10} /> CISA KEV ACTIVE THREAT
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Confidence Meter */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ fontFamily: 'Orbitron,monospace', fontSize: '0.62rem', color: 'var(--p-green)', fontWeight: 700 }}>
+                          {confPct}% CONFIDENCE ({v.confidence_level})
+                        </div>
+                        <div style={{ width: 100, height: 4, background: 'rgba(255,255,255,0.1)', marginTop: 3 }}>
+                          <div style={{ width: `${confPct}%`, height: '100%', background: confPct >= 80 ? 'var(--p-green)' : confPct >= 50 ? 'var(--p-amber)' : 'var(--p-blue)' }} />
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => toggleBreakdown(v.cve_id)}
+                        className="cyber-btn cyber-btn-secondary"
+                        style={{ padding: '3px 8px', fontSize: '0.58rem' }}
+                      >
+                        {isExpanded ? 'HIDE' : 'EXPLAIN'}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Title & Product info */}
+                  <div style={{ fontFamily: 'Share Tech Mono,monospace', fontSize: '0.82rem', color: '#fff', marginBottom: '6px' }}>
+                    {v.title}
+                  </div>
+
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', fontSize: '0.7rem', color: 'rgba(0,200,248,0.7)', marginBottom: '8px' }}>
+                    <span>Product: <strong>{v.product} {v.version}</strong></span>
+                    <span>•</span>
+                    <span>CPE: <code style={{ color: 'var(--p-cyan)' }}>{v.cpe}</code></span>
+                    {hasExploit && (
+                      <>
+                        <span>•</span>
+                        <span style={{ color: '#ff5500', fontWeight: 700 }}>
+                          Exploit Available ({v.exploit_sources?.join(', ')})
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Explainable Confidence Breakdown Dropdown */}
+                  {isExpanded && v.confidence_breakdown && (
+                    <div style={{ background: 'rgba(0,5,15,0.9)', border: '1px solid rgba(0,255,148,0.3)', padding: '10px 14px', marginTop: '8px', marginBottom: '8px' }}>
+                      <div style={{ fontFamily: 'Orbitron,monospace', fontSize: '0.62rem', color: 'var(--p-green)', fontWeight: 800, marginBottom: '6px' }}>
+                        CONFIDENCE FACTOR BREAKDOWN (TOTAL: {confPct}/100)
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '6px', fontSize: '0.68rem', fontFamily: 'Share Tech Mono,monospace' }}>
+                        {Object.entries(v.confidence_breakdown).map(([k, item]) => (
+                          <div key={k} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(255,255,255,0.02)', padding: '4px 8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <span style={{ color: 'rgba(0,200,248,0.8)' }}>{item.reason}</span>
+                            <span style={{ color: item.pts > 0 ? 'var(--p-green)' : 'rgba(255,255,255,0.3)', fontWeight: 700 }}>+{item.pts} pts</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Remediation */}
+                  {v.remediation && (
+                    <div style={{ fontFamily: 'Share Tech Mono,monospace', fontSize: '0.72rem', color: 'rgba(0,255,148,0.8)', marginTop: '4px' }}>
+                      Remediation: {v.remediation}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Discovered Hosts & Ports Matrix */}
       {scanResult && (
         <div className="glass-panel" style={{ padding: '24px' }}>
@@ -364,7 +580,6 @@ export default function NmapScannerHub({ onSendToSwarm }) {
               </p>
             </div>
 
-            {/* Swarm Audit Trigger */}
             <button
               onClick={triggerSwarmAudit}
               disabled={swarmTriggering}
@@ -469,7 +684,6 @@ export default function NmapScannerHub({ onSendToSwarm }) {
                                   </td>
                                 </tr>
 
-                                {/* Expanded Script Details */}
                                 {isExpanded && scriptKeys.length > 0 && (
                                   <tr style={{ background: 'rgba(0,0,0,0.3)' }}>
                                     <td colSpan={5} style={{ padding: '12px 16px' }}>

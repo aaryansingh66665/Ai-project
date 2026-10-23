@@ -3,6 +3,7 @@ import { Bot, Send, User, Cpu, Sparkles, Terminal, Code } from 'lucide-react';
 
 const AGENTS = [
   { id: 'orchestrator', name: 'Master Orchestrator', model: 'qwen3:8b', emoji: '👑', desc: 'Autonomous task decomposition & swarm planning' },
+  { id: 'nemotron', name: 'NVIDIA Nemotron Reasoner', model: 'nemotron-mini:4b', emoji: '🟢', desc: 'Hardware-accelerated deep threat modeling & reasoning' },
   { id: 'threat_intel', name: 'Threat Intelligence', model: 'deepseek-r1:8b', emoji: '🧠', desc: 'Deep chain-of-thought CVE analysis & MITRE TTPs' },
   { id: 'coder', name: 'Offensive & Defensive Coder', model: 'qwen2.5-coder:7b', emoji: '💻', desc: 'Full-scale exploit PoCs, patches & automation' },
   { id: 'malware', name: 'Malware & Reverse Eng', model: 'qwen3:8b', emoji: '🔬', desc: 'Binary disassembly, shellcode & YARA rules' },

@@ -1,66 +1,51 @@
 import React, { useState, useEffect } from 'react';
+import CanvasBackground from './components/CanvasBackground';
 import Navbar from './components/Navbar';
-import GpuMeter from './components/GpuMeter';
+import GpuDashboard from './components/GpuDashboard';
 import SwarmVisualizer from './components/SwarmVisualizer';
 import SearchHub from './components/SearchHub';
 import RagIngestor from './components/RagIngestor';
 import AgentPlayground from './components/AgentPlayground';
 import NmapScannerHub from './components/NmapScannerHub';
+import ThreatIntelHub from './components/ThreatIntelHub';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('swarm');
-  const [gpuStats, setGpuStats] = useState(null);
-  const [ollamaOnline, setOllamaOnline] = useState(true);
+  const [activeTab, setActiveTab]           = useState('swarm');
+  const [gpuStats, setGpuStats]             = useState(null);
+  const [ollamaOnline, setOllamaOnline]     = useState(true);
+  const [swarmInitQuery, setSwarmInitQuery] = useState('');
 
   const fetchStatus = async () => {
     try {
-      const res = await fetch('/api/status');
-      if (res.ok) {
-        const data = await res.json();
-        setGpuStats(data.gpu);
-        setOllamaOnline(data.ollama_online);
-      }
-    } catch (e) {
-      console.error('Status fetch failed:', e);
-    }
+      const res  = await fetch('/api/status');
+      if (res.ok) { const d = await res.json(); setGpuStats(d.gpu); setOllamaOnline(d.ollama_online); }
+    } catch(e) {}
   };
 
-  useEffect(() => {
-    fetchStatus();
-    const interval = setInterval(fetchStatus, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleSendToSwarm = (result) => {
-    setActiveTab('swarm');
-  };
+  useEffect(() => { fetchStatus(); const id = setInterval(fetchStatus, 4000); return () => clearInterval(id); }, []);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      
-      {/* Top Navbar */}
-      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} ollamaOnline={ollamaOnline} />
+    <>
+      {/* Animated canvas — deep void + hex grid + matrix rain + particles */}
+      <CanvasBackground />
 
-      {/* Main Content Area */}
-      <main style={{ maxWidth: '1440px', width: '100%', margin: '0 auto', padding: '24px', display: 'flex', flexDirection: 'column', gap: '24px', flex: 1 }}>
-        
-        {/* GPU HUD Bar */}
-        <GpuMeter gpu={gpuStats} onRefresh={fetchStatus} />
+      <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column', position:'relative', zIndex:1 }}>
+        <Navbar activeTab={activeTab} setActiveTab={setActiveTab} ollamaOnline={ollamaOnline} />
 
-        {/* View Routing */}
-        {activeTab === 'swarm' && <SwarmVisualizer />}
-        {activeTab === 'nmap' && <NmapScannerHub onSendToSwarm={handleSendToSwarm} />}
-        {activeTab === 'search' && <SearchHub />}
-        {activeTab === 'rag' && <RagIngestor />}
-        {activeTab === 'agents' && <AgentPlayground />}
+        <main style={{ maxWidth:1700, width:'100%', margin:'0 auto', padding:'18px 24px 36px', display:'flex', flexDirection:'column', gap:16, flex:1 }}>
+          <GpuDashboard gpu={gpuStats} ollamaOnline={ollamaOnline} onRefresh={fetchStatus} />
+          {activeTab === 'swarm'  && <SwarmVisualizer initialQuery={swarmInitQuery} />}
+          {activeTab === 'threat' && <ThreatIntelHub onSendToSwarm={q => { setSwarmInitQuery(q); setActiveTab('swarm'); }} />}
+          {activeTab === 'nmap'   && <NmapScannerHub onSendToSwarm={() => setActiveTab('swarm')} />}
+          {activeTab === 'search' && <SearchHub />}
+          {activeTab === 'rag'    && <RagIngestor />}
+          {activeTab === 'agents' && <AgentPlayground />}
+        </main>
 
-      </main>
-
-      {/* Footer */}
-      <footer style={{ borderTop: '1px solid var(--border-dim)', padding: '16px 24px', textAlign: 'center', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-        CyberAgent X — 100% Offline Multi-Agent System on NVIDIA RTX 3050 (6GB VRAM) • Zero Telemetry • Zero Restrictions
-      </footer>
-
-    </div>
+        <footer style={{ borderTop:'1px solid rgba(0,200,248,0.08)', padding:'12px 24px', textAlign:'center', fontFamily:'Share Tech Mono,monospace', fontSize:'0.62rem', color:'rgba(0,200,248,0.2)', letterSpacing:'0.5px' }}>
+          CYBERAGENT X · OFFLINE · RTX 3050 6GB VRAM · CUDA 13.2 · ZERO TELEMETRY · 100% LOCAL
+        </footer>
+      </div>
+    </>
   );
 }
